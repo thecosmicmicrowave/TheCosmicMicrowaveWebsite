@@ -1,0 +1,8 @@
+name = "Cosmic"
+license = "MIT"
+licenselink = "https://github.com/"
+description = "A custom theme for FTC Team Cosmic Microwave"
+homepage = "https://example.org/"
+tags = ["blog", "robotics", "ftc"]
+features = []
+min_version = "0.41.0"

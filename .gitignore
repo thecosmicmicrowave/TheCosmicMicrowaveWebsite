@@ -1,0 +1,12 @@
+# Hugo build output
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
+hugo_build.lock
+.hugo_build.lock
+# Hugo cache (if you use it)
+/.cache/
+
+# OS-specific
+.DS_Store

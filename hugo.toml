@@ -1,0 +1,4 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'FTC Team #35817 - Cosmic Microwave'
+theme = 'cosmic'
