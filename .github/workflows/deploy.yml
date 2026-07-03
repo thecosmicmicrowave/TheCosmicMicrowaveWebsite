@@ -11,23 +11,23 @@ jobs:
     steps:
       - name: Checkout repository
         # Previously actions/checkout@v4
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           submodules: true
 
       - name: Setup Hugo
         # Previously peaceiris/actions-hugo@v3
-        uses: peaceiris/actions-hugo@c6203115c54ec47de51b038c9c05e19bd8dc0716
+        uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78
         with:
-          hugo-version: '0.128.0'
+          hugo-version: '0.163.3'
           extended: true
 
       - name: Build Hugo Site
         run: hugo --gc --minify
 
       - name: Deploy to Cloudflare Pages
-        # Previously cloudflare/wrangler-action@v3
-        uses: cloudflare/wrangler-action@392082e817b2eb071ebdb5001ea332d5b72221b2
+        # Previously cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0
+        uses: cloudflare/wrangler-action@
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
