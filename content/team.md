@@ -5,7 +5,6 @@ title: "Team info"
 ## Team mentors
 1. Zack Wester
 2. JT Perry
-3. April Perry
 
 ## Team members
 1. Aaron Streepy
