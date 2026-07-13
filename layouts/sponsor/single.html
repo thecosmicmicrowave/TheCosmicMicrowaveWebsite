@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .Title }} | FTC 35817</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ===== COPY THE EXACT SAME CSS FROM YOUR index.html ===== */
+        /* (For brevity, I'll include a placeholder – but you must paste your full CSS here) */
+        /* Alternatively, you can import it from a partial, but we'll include it inline for simplicity */
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a14;
+            --bg-secondary: #111128;
+            --bg-card: rgba(20, 20, 50, 0.7);
+            --text-primary: #f0f0ff;
+            --text-secondary: #b8b8e0;
+            --accent-1: #7b4cff;
+            --accent-2: #ff3b30;
+            --accent-3: #ff6b6b;
+            --glow-1: rgba(123, 76, 255, 0.3);
+            --glow-2: rgba(255, 59, 48, 0.2);
+            --radius: 16px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        a {
+            color: var(--accent-2);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        a:hover { color: var(--accent-1); }
+
+        /* ----- STARFIELD ----- */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration, 4s) ease-in-out infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 6px 2px rgba(255,255,255,0.3);
+            animation: shoot linear infinite;
+        }
+        @keyframes shoot {
+            0% { transform: translate(0,0) rotate(-35deg); opacity: 0; }
+            5% { opacity: 1; }
+            20% { opacity: 1; }
+            100% { transform: translate(-400px,400px) rotate(-35deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .section-padding { padding: 60px 0; }
+
+        /* ----- HEADER (same as index) ----- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 0;
+            background: rgba(10,10,20,0.8);
+            backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(123,76,255,0.15);
+            transition: var(--transition);
+        }
+        header.scrolled {
+            background: rgba(10,10,20,0.95);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-wrapper img {
+            height: 48px;
+            width: auto;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            padding: 4px;
+            border: 1px solid rgba(123,76,255,0.2);
+            transition: var(--transition);
+            object-fit: contain;
+        }
+        .logo-wrapper img:hover {
+            border-color: var(--accent-2);
+            box-shadow: 0 0 30px var(--glow-2);
+        }
+        .logo-text {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent-1), #b30000);
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--glow-2);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 4px;
+            cursor: pointer;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+        /* ----- PAGE HEADER (sponsor) ----- */
+        .page-header {
+            padding: 140px 0 40px;
+            text-align: center;
+            background: var(--bg-primary);
+            border-bottom: 1px solid rgba(255,59,48,0.1);
+        }
+        .page-header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 10px auto 0;
+        }
+
+        /* ----- SPONSORSHIP TIERS ----- */
+        .tier-section {
+            background: var(--bg-secondary);
+        }
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+        }
+        .tier-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 30px 24px;
+            border: 1px solid rgba(255,59,48,0.08);
+            backdrop-filter: blur(4px);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .tier-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255,59,48,0.25);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        .tier-card .tier-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-2);
+            margin-bottom: 4px;
+        }
+        .tier-card .tier-range {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .tier-card .tier-tagline {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--accent-1);
+            padding-left: 12px;
+        }
+        .tier-card .benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 16px;
+            flex-grow: 1;
+        }
+        .tier-card .benefits li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 4px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .tier-card .benefits li::before {
+            content: '✦';
+            color: var(--accent-2);
+            font-weight: 700;
+        }
+        .tier-card .btn-sponsor,
+        .inkind-card .btn-sponsor {
+            align-self: flex-start;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: var(--transition);
+            cursor: pointer;
+            margin-top: 16px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .tier-card .btn-sponsor:hover,
+        .inkind-card .btn-sponsor:hover {
+            border-color: var(--accent-2);
+            background: rgba(255,59,48,0.08);
+        }
+
+        /* In-Kind section */
+        .inkind-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+        .inkind-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            border: 1px solid rgba(123,76,255,0.15);
+            backdrop-filter: blur(4px);
+            transition: var(--transition);
+        }
+        .inkind-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-1);
+            box-shadow: 0 8px 30px var(--glow-1);
+        }
+        .inkind-card h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            color: var(--accent-1);
+            margin-bottom: 4px;
+        }
+        .inkind-card .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .inkind-card .desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        .inkind-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .inkind-card ul li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 2px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .inkind-card ul li::before {
+            content: '◆';
+            color: var(--accent-2);
+            font-size: 0.7rem;
+        }
+
+        /* ----- FOOTER (same) ----- */
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid rgba(255,59,48,0.06);
+            padding: 40px 0 28px;
+            margin-top: 40px;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-inner p { color: var(--text-secondary); font-size: 0.9rem; }
+        .footer-inner .footer-logo {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .footer-inner .footer-logo span { color: var(--accent-1); }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .footer-links a:hover { color: var(--accent-2); }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                justify-content: center;
+                padding: 40px 32px;
+                gap: 24px;
+                transition: var(--transition);
+                border-left: 1px solid rgba(123,76,255,0.1);
+                backdrop-filter: blur(20px);
+            }
+            .nav-links.open { right: 0; }
+            .hamburger { display: flex; }
+            .logo-text { font-size: 0.85rem; }
+            .page-header h1 { font-size: 2rem; }
+            .tier-grid { grid-template-columns: 1fr; }
+            .inkind-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .logo-text { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== STARFIELD ===== -->
+    <div id="stars" aria-hidden="true"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="container nav-inner">
+            <a href="/" class="logo-wrapper">
+                <img src="/Screenshot_2026-06-19_at_10.31.06_AM-removebg-preview.png" alt="The Cosmic Microwave logo" />
+                <span class="logo-text">The Cosmic Microwave</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#team">Team</a></li>
+                <li><a href="/#blog">News</a></li>
+                <li><a href="/sponsor/">Sponsor</a></li>    <!-- NEW LINK -->
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="/#contact" class="nav-cta">Join Us</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header">
+        <div class="container">
+            <h1>🌌 Cosmic Microwave Sponsorship Program</h1>
+            <p>Support our mission to inspire the next generation of engineers and innovators.</p>
+        </div>
+    </section>
+
+    <!-- ===== WHY SPONSOR US ===== -->
+    <section class="section-padding" style="background: var(--bg-primary); padding-top: 40px; padding-bottom: 60px;">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 24px; font-family: 'Orbitron', monospace; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🌟 Why Sponsor Us</h2>
+            <div style="max-width: 900px; margin: 0 auto; background: var(--bg-card); border: 1px solid rgba(255,59,48,0.08); border-radius: var(--radius); padding: 32px; backdrop-filter: blur(4px);">
+                <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 16px;">
+                    We are a non-profit 501(c)(3) organization, and all sponsorships are 100% tax-deductible.
+                </p>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 16px;">
+                    By sponsoring our team, you are directly investing in the next generation of engineers. Your support helps us remain committed to making STEM education accessible to all, while expanding our outreach and building innovative, world-class robots.
+                </p>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 16px;">
+                    We charge zero membership fees so that any motivated student can join, regardless of family income. That means we rely on sponsors like you and grants to cover robot parts, event travel, tools, outreach supplies, and registration fees—especially as we prepare to compete at the FTC World Championship in Texas this season.
+                </p>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 0;">
+                    Advertise your brand while supporting a mission that inspires students to innovate, lead, and build. In return for backing our team, your logo can be featured on team apparel, social media, our robot, and more.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINANCIAL SPONSORSHIP TIERS ===== -->
+    <section class="tier-section section-padding">
+        <div class="container">
+            <h2 class="section-title">💰 Financial Support Levels</h2>
+            <div class="tier-grid">
+
+                <!-- Universe Sponsor -->
+                <div class="tier-card">
+                    <div class="tier-name">🌌 Universe Sponsor</div>
+                    <div class="tier-range">$5,000+</div>
+                    <div class="tier-tagline">"Helping our mission reach beyond the stars."</div>
+                    <ul class="benefits">
+                        <li>Largest logo placement on robot</li>
+                        <li>Premium placement on team shirts, pit banner, website, and presentations</li>
+                        <li>Dedicated sponsor spotlight on social media</li>
+                        <li>Featured in sponsor appreciation video</li>
+                        <li>Private robot demonstration at sponsor location</li>
+                        <li>Recognition at outreach events</li>
+                        <li>Recognition in engineering portfolio and team presentations</li>
+                        <li>Invitation to team meetings, demos, and competitions</li>
+                    </ul>
+                    <a href="/#contact" class="btn-sponsor">Become a Universe Sponsor →</a>
+                </div>
+
+                <!-- Galaxy Sponsor -->
+                <div class="tier-card">
+                    <div class="tier-name">🌠 Galaxy Sponsor</div>
+                    <div class="tier-range">$2,500 – $4,999</div>
+                    <div class="tier-tagline">"Supporting innovation across the cosmos."</div>
+                    <ul class="benefits">
+                        <li>Large logo placement on robot</li>
+                        <li>Logo on team apparel and website</li>
+                        <li>Social media sponsor feature</li>
+                        <li>Recognition during outreach events</li>
+                        <li>Sponsor appreciation package</li>
+                    </ul>
+                    <a href="/#contact" class="btn-sponsor">Become a Galaxy Sponsor →</a>
+                </div>
+
+                <!-- Star Sponsor -->
+                <div class="tier-card">
+                    <div class="tier-name">⭐ Star Sponsor</div>
+                    <div class="tier-range">$1,000 – $2,499</div>
+                    <div class="tier-tagline">"A bright contribution to our journey."</div>
+                    <ul class="benefits">
+                        <li>Medium logo placement on robot</li>
+                        <li>Website recognition</li>
+                        <li>Social media thank-you</li>
+                        <li>Sponsor recognition in presentations</li>
+                    </ul>
+                    <a href="/#contact" class="btn-sponsor">Become a Star Sponsor →</a>
+                </div>
+
+                <!-- Planet Sponsor -->
+                <div class="tier-card">
+                    <div class="tier-name">🪐 Planet Sponsor</div>
+                    <div class="tier-range">$500 – $999</div>
+                    <div class="tier-tagline">"Providing the foundation for exploration."</div>
+                    <ul class="benefits">
+                        <li>Logo on website</li>
+                        <li>Sponsor listing on team materials</li>
+                        <li>Social media recognition</li>
+                    </ul>
+                    <a href="/#contact" class="btn-sponsor">Become a Planet Sponsor →</a>
+                </div>
+
+                <!-- Meteor Sponsor -->
+                <div class="tier-card">
+                    <div class="tier-name">☄️ Meteor Sponsor</div>
+                    <div class="tier-range">$100 – $499</div>
+                    <div class="tier-tagline">"Every contribution moves us forward."</div>
+                    <ul class="benefits">
+                        <li>Sponsor listing on website</li>
+                        <li>Public thank-you recognition</li>
+                    </ul>
+                    <a href="/#contact" class="btn-sponsor">Become a Meteor Sponsor →</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== IN-KIND SPONSORSHIP ===== -->
+    <section class="section-padding" style="background: var(--bg-primary);">
+        <div class="container">
+            <h2 class="section-title">🛠️ Mission Support Partners (In-Kind)</h2>
+            <p style="text-align:center; color: var(--text-secondary); max-width: 700px; margin: 0 auto 40px;">
+                Fueling our mission through expertise, resources, and innovation.
+            </p>
+
+            <div class="inkind-grid">
+                <div class="inkind-card">
+                    <h3>🚀 Launch Partner</h3>
+                    <div class="subtitle">Manufacturing &amp; Fabrication Support</div>
+                    <div class="desc">Provides: CNC machining, Laser cutting, Waterjet cutting, Welding, Sheet metal fabrication, Custom manufacturing</div>
+                    <ul>
+                        <li>Featured as a key engineering partner</li>
+                        <li>Logo placement on robot</li>
+                        <li>Sponsor spotlight</li>
+                        <li>Recognition in engineering portfolio</li>
+                    </ul>
+                    <a href="/#contact" class="btn-sponsor">Become a Launch Partner →</a>
+                </div>
+
+                <div class="inkind-card">
+                    <h3>🔧 Engineering Partner</h3>
+                    <div class="subtitle">Technical Expertise &amp; Mentorship</div>
+                    <div class="desc">Provides: Engineering mentorship, CAD assistance, Programming support, Design reviews, Industry knowledge</div>
+                    <ul>
+                        <li>Featured engineering partner status</li>
+                        <li>Website recognition</li>
+                        <li>Social media feature</li>
+                        <li>Invitation to design reviews and demonstrations</li>
+                    </ul>
+                    <a href="/#contact" class="btn-sponsor">Become an Engineering Partner →</a>
+                </div>
+
+                <div class="inkind-card">
+                    <h3>🧰 Technology Partner</h3>
+                    <div class="subtitle">Tools &amp; Equipment Support</div>
+                    <div class="desc">Provides: 3D printers, Software licenses, Electronics, Sensors, Robotics equipment, Computers/tools</div>
+                    <ul>
+                        <li>Logo placement on sponsor page</li>
+                        <li>Recognition during presentations</li>
+                        <li>Sponsor appreciation post</li>
+                    </ul>
+                    <a href="/#contact" class="btn-sponsor">Become a Technology Partner →</a>
+                </div>
+
+                <div class="inkind-card">
+                    <h3>🛰️ Resource Partner</h3>
+                    <div class="subtitle">Materials &amp; Supplies Support</div>
+                    <div class="desc">Provides: Aluminum/material stock, Hardware, Consumables, Batteries, Safety equipment, Shop supplies</div>
+                    <ul>
+                        <li>Sponsor listing</li>
+                        <li>Public thank-you</li>
+                        <li>Recognition in team documentation</li>
+                    </ul>
+                    <a href="/#contact" class="btn-sponsor">Become a Resource Partner →</a>
+                </div>
+
+                <div class="inkind-card">
+                    <h3>🌎 Community Partner</h3>
+                    <div class="subtitle">Outreach &amp; Program Support</div>
+                    <div class="desc">Supports: STEM outreach events, Workshops, Team events, Community programs</div>
+                    <ul>
+                        <li>Community partner recognition</li>
+                        <li>Social media feature</li>
+                        <li>Event recognition</li>
+                    </ul>
+                    <a href="/#contact" class="btn-sponsor">Become a Community Partner →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container footer-inner">
+            <div>
+                <span class="footer-logo">The Cosmic Microwave · <span>FTC 35817</span></span>
+                <p style="margin-top:4px;font-size:0.8rem;">&copy; 2026 The Cosmic Microwave. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/#about">About</a>
+                <a href="/#team">Team</a>
+                <a href="/#blog">News</a>
+                <a href="/sponsor/">Sponsor</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Header scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // Starfield
+        (function generateStars() {
+            const starsContainer = document.getElementById('stars');
+            const count = 200;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2.5 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 5 + 3) + 's');
+                star.style.animationDelay = (Math.random() * 6) + 's';
+                star.style.opacity = Math.random() * 0.6 + 0.2;
+                starsContainer.appendChild(star);
+            }
+            for (let i = 0; i < 3; i++) {
+                const ss = document.createElement('div');
+                ss.className = 'shooting-star';
+                ss.style.left = (Math.random() * 70 + 10) + '%';
+                ss.style.top = (Math.random() * 30 + 5) + '%';
+                ss.style.animationDuration = (Math.random() * 6 + 4) + 's';
+                ss.style.animationDelay = (Math.random() * 20 + 5) + 's';
+                starsContainer.appendChild(ss);
+            }
+        })();
+    </script>
+</body>
+</html>
