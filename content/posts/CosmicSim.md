@@ -15,3 +15,5 @@ Players can personalize their robot setup, experiment with different driving sty
 The goal of Cosmic Sim is not only to create an entertaining game, but also to spread awareness of FIRST and inspire more people to become interested in STEM. By turning robotics into an interactive experience, the project helps introduce new audiences to the engineering, programming, and teamwork that happen behind every FTC robot.
 
 Whether someone is already part of the FIRST community or is discovering robotics for the first time, Cosmic Sim provides a new way to experience the excitement of FTC. Through this project, we hope to share the spirit of competition, creativity, and innovation that makes FIRST unique.
+
+Play at: https://aspect-nil.itch.io/cosmic-sim
