@@ -1,13 +1,11 @@
-baseURL = "http://localhost:1313/"
+baseURL = "https://cosmicmicrowave.org"    # <- replace with your actual domain
 title = "FTC 35817 — The Cosmic Microwave"
-languageCode = "en-us"
-theme = ""   # no theme, we use custom layouts directly
+locale = "en-us"                       # replaces languageCode
 
 [params]
-  # You can add custom params here if needed
   tagline = "Cogitare est coquere — To think is to cook."
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
-      unsafe = true   # allows raw HTML in Markdown (e.g., if you need it)
+      unsafe = true
