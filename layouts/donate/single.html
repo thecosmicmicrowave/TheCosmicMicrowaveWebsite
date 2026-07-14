@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All News | FTC 35817</title>
+    <title>{{ .Title }} | FTC 35817</title>
 
     <link rel="icon" type="image/png" href="/favicon-96x96.png" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -78,22 +77,59 @@
         .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,59,48,0.25); color: #fff !important; }
         .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; cursor: pointer; }
         .hamburger span { display: block; width: 28px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: var(--transition); }
-        .hero-sub { padding: 120px 0 40px; }
-        .hero-sub h1 { font-family: 'Orbitron', monospace; font-size: 2.4rem; margin-bottom: 0.25rem; }
-        .hero-sub p { color: var(--text-secondary); }
-        .posts-grid { display: grid; gap: 24px; margin: 24px 0 60px; }
-        .post-card { background: var(--bg-card); border: 1px solid rgba(255,59,48,0.08); border-radius: 20px; padding: 24px; backdrop-filter: blur(4px); }
-        .post-card h2 { font-family: 'Orbitron', monospace; font-size: 1.25rem; margin-bottom: 8px; }
-        .post-card p { color: var(--text-secondary); margin-bottom: 12px; }
-        .post-card a { font-weight: 600; }
-        footer { background: var(--bg-primary); border-top: 1px solid rgba(255,59,48,0.06); padding: 40px 0 28px; margin-top: 40px; }
-        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+        .donate-page { padding: 140px 0 80px; }
+        .card { background: rgba(20,20,50,0.7); border: 1px solid rgba(123,76,255,0.2); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); backdrop-filter: blur(4px); }
+        .card h1 { font-family: 'Orbitron', monospace; font-size: 2rem; margin-bottom: 16px; }
+        .card p { color: var(--text-secondary); margin-bottom: 20px; }
+        .btn { display: inline-block; padding: 12px 24px; border-radius: 999px; background: linear-gradient(135deg, var(--accent-1), #b30000); color: #fff; font-weight: 600; }
+        .btn:hover { color: #fff; transform: translateY(-2px); }
+
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid rgba(255,59,48,0.06);
+            padding: 40px 0 28px;
+            margin-top: 40px;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
         .footer-inner p { color: var(--text-secondary); font-size: 0.9rem; }
-        .footer-links { display: flex; gap: 24px; }
-        .footer-links a { color: var(--text-secondary); font-size: 0.85rem; }
+        .footer-inner .footer-logo {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .footer-inner .footer-logo span { color: var(--accent-1); }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
         .footer-links a:hover { color: var(--accent-2); }
-        @media (max-width: 768px) { .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-secondary); flex-direction: column; justify-content: center; padding: 40px 32px; gap: 24px; transition: var(--transition); border-left: 1px solid rgba(123,76,255,0.1); backdrop-filter: blur(20px); } .nav-links.open { right: 0; } .hamburger { display: flex; } .hero-sub h1 { font-size: 1.8rem; } }
-        @media (max-width: 480px) { .container { padding: 0 16px; } .logo-text { display: none; } }
+
+        @media (max-width: 768px) {
+            .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-secondary); flex-direction: column; justify-content: center; padding: 40px 32px; gap: 24px; transition: var(--transition); border-left: 1px solid rgba(123,76,255,0.1); backdrop-filter: blur(20px); }
+            .nav-links.open { right: 0; }
+            .hamburger { display: flex; }
+            .card { padding: 24px; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .logo-text { display: none; }
+            .donate-page { padding: 120px 0 60px; }
+        }
     </style>
 </head>
 <body>
@@ -124,26 +160,15 @@
         </div>
     </header>
 
-    <section class="hero-sub">
+    <main class="donate-page">
         <div class="container">
-            <h1>All News</h1>
-            <p>Updates from The Cosmic Microwave.</p>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <div class="posts-grid">
-                {{ range .Pages }}
-                <article class="post-card">
-                    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-                    <p>{{ .Date.Format "January 2, 2006" }}</p>
-                    <p>{{ .Summary }}</p>
-                </article>
-                {{ end }}
+            <div class="card">
+                <h1>Support Our Team</h1>
+                <p>Your donation helps fund robot parts, travel, outreach, and the many opportunities our team creates for students.</p>
+                <a class="btn" href="https://secure.givelively.org/donate/washington-first-robotics/the-cosmic-microwave" target="_blank" rel="noopener noreferrer">Donate Here</a>
             </div>
         </div>
-    </section>
+    </main>
 
     <footer>
         <div class="container footer-inner">
@@ -162,24 +187,28 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('open');
-        });
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('open');
+            });
+        }
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('open');
+                hamburger?.classList.remove('active');
+                navLinks?.classList.remove('open');
             });
         });
+
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
+
         (function generateStars() {
             const starsContainer = document.getElementById('stars');
-            const count = 200;
+            const count = 180;
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('span');
                 star.className = 'star';
