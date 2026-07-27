@@ -45,6 +45,12 @@ Grep assertions run against files under `public/` after a build. They are the
 regression net: each one fails loudly if a later task reintroduces something a
 previous task removed.
 
+**One caveat that matters:** do not try to detect emoji with a byte-range grep such
+as `grep -oE '[\xF0-\xF4][\x80-\xBF]{3}'`. GNU grep does not interpret `\xNN`
+escapes inside a bracket expression — it matches the literal characters `\`, `x`,
+`F`, `0` and so on, so that pattern reports clean against a page full of emoji. The
+"no emoji" constraint is checked with `scripts/check-emoji.py`, created in Task 1.
+
 ## File Structure
 
 | File | Responsibility |
@@ -64,6 +70,7 @@ previous task removed.
 | `layouts/posts/list.html` | Post index content only |
 | `layouts/posts/single.html` | Post body content only |
 | `layouts/404.html` | 404 content only |
+| `scripts/check-emoji.py` | Build-output check: fails if any page contains an emoji |
 
 CSS is written incrementally: each task appends the rules for the components it
 builds. No task rewrites another task's CSS.
@@ -77,6 +84,7 @@ to prove the pipeline works end to end.
 
 **Files:**
 - Create: `assets/css/main.css`
+- Create: `scripts/check-emoji.py`
 - Create: `layouts/partials/head.html`
 - Create: `layouts/partials/svg-sprite.html`
 - Create: `layouts/partials/icon.html`
@@ -342,6 +350,69 @@ button { font: inherit; cursor: pointer; }
 }
 ```
 
+- [ ] **Step 1b: Create the emoji checker**
+
+The "no emoji" constraint spans six pages and cannot be verified by eye. Create
+`scripts/check-emoji.py`:
+
+```python
+"""Fail if any built HTML page contains an emoji or pictographic symbol.
+
+Byte-range greps do not work for this: GNU grep treats \\xNN inside a bracket
+expression as literal characters, so such a pattern silently reports clean.
+"""
+import glob
+import sys
+import unicodedata
+
+RANGES = (
+    (0x1F000, 0x1FAFF),  # pictographs, emoticons, transport, symbols
+    (0x2600,  0x27BF),   # misc symbols and dingbats
+    (0x2B00,  0x2BFF),   # arrows and stars
+    (0xFE0F,  0xFE0F),   # variation selector-16
+)
+
+
+def is_emoji(ch: str) -> bool:
+    cp = ord(ch)
+    if any(lo <= cp <= hi for lo, hi in RANGES):
+        return True
+    return cp > 0x2500 and unicodedata.category(ch) == "So"
+
+
+def main() -> int:
+    hits = []
+    for path in sorted(glob.glob("public/**/*.html", recursive=True)):
+        with open(path, encoding="utf-8") as fh:
+            for lineno, line in enumerate(fh, 1):
+                for ch in line:
+                    if is_emoji(ch):
+                        name = unicodedata.name(ch, "unnamed")
+                        hits.append(f"{path}:{lineno}: U+{ord(ch):04X} {name}")
+    if hits:
+        print("\n".join(hits))
+        print(f"\nFAIL: {len(hits)} emoji found")
+        return 1
+    print("CLEAN: no emoji in built output")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+Verify it actually detects something before trusting it:
+
+```bash
+cd "C:/The Cosmic Microwave/website"
+mkdir -p public && printf '<p>\xf0\x9f\x9a\x80 test</p>' > public/_emojitest.html
+python scripts/check-emoji.py; echo "exit: $?"
+rm public/_emojitest.html
+```
+
+Expected: prints a `U+1F680 ROCKET` hit and `exit: 1`. A checker that cannot fail is
+not a checker.
+
 - [ ] **Step 2: Create the icon sprite partial**
 
 Create `layouts/partials/svg-sprite.html`. Every symbol is a 24×24 stroke icon
@@ -531,10 +602,22 @@ Create three empty placeholder files now so the build succeeds:
 ```bash
 cd "C:/The Cosmic Microwave/website"
 mkdir -p layouts/partials assets/css assets/js
-printf '' > layouts/partials/header.html
-printf '' > layouts/partials/footer.html
-printf '/* populated in Task 2 */\n' > assets/js/site.js
+printf '<!-- populated in Task 2 -->\n' > layouts/partials/header.html
+printf '<!-- populated in Task 2 -->\n' > layouts/partials/footer.html
+printf '(function(){"use strict";})();\n' > assets/js/site.js
 ```
+
+The JS placeholder must contain a real statement, not just a comment — `minify`
+reduces a comment-only file to zero bytes and the pipeline can fail on it.
+
+Build now, before touching the 404, so any pipeline failure surfaces against the
+smallest possible change:
+
+```bash
+hugo --quiet && echo "pipeline OK"
+```
+
+Expected: `pipeline OK`.
 
 - [ ] **Step 6: Rewrite the 404 page**
 
@@ -624,7 +707,8 @@ Expected: `0`.
 
 ```bash
 cd "C:/The Cosmic Microwave/website"
-git add assets/css/main.css assets/js/site.js layouts/_default/baseof.html \
+git add assets/css/main.css assets/js/site.js scripts/check-emoji.py \
+        layouts/_default/baseof.html \
         layouts/partials/head.html layouts/partials/svg-sprite.html \
         layouts/partials/icon.html layouts/partials/header.html \
         layouts/partials/footer.html layouts/404.html
@@ -1921,10 +2005,10 @@ grep -c 'fontawesome\|font-awesome\|fa-' public/index.html
 Expected: `0`.
 
 ```bash
-grep -oE '[\xF0-\xF4][\x80-\xBF]{3}' public/index.html | head
+python scripts/check-emoji.py; echo "exit: $?"
 ```
 
-Expected: no output — no emoji in the rendered homepage.
+Expected: `CLEAN: no emoji in built output` and `exit: 0`.
 
 ```bash
 grep -c 'id="news"' public/index.html
@@ -2246,10 +2330,11 @@ grep -c '<style' public/sponsor/index.html
 Expected: `0`.
 
 ```bash
-grep -oE '[\xF0-\xF4][\x80-\xBF]{3}' public/sponsor/index.html | head
+python scripts/check-emoji.py; echo "exit: $?"
 ```
 
-Expected: no output — every emoji is gone.
+Expected: `CLEAN: no emoji in built output` and `exit: 0` — every emoji that was on
+the sponsor page is gone.
 
 ```bash
 grep -c 'style="' public/sponsor/index.html
@@ -2542,15 +2627,16 @@ echo "--- inline style blocks (want 0) ---"
 grep -rl '<style' public --include='*.html' | wc -l
 echo "--- font awesome (want 0) ---"
 grep -rl 'font-awesome\|fontawesome\|fa-solid\|class="fas\|class="fab' public --include='*.html' | wc -l
-echo "--- emoji (want no lines) ---"
-grep -roE '[\xF0-\xF4][\x80-\xBF]{3}' public --include='*.html' | head
 echo "--- placeholder phone (want 0) ---"
 grep -rl '555) 000-0000' public --include='*.html' | wc -l
 echo "--- bracketed location (want 0) ---"
 grep -rl '\[Lake Tapps' public --include='*.html' | wc -l
+echo "--- emoji ---"
+python scripts/check-emoji.py; echo "exit: $?"
 ```
 
-Expected: the four counts print `0` and the emoji grep prints nothing.
+Expected: all four counts print `0`, then `CLEAN: no emoji in built output` and
+`exit: 0`.
 
 If any check fails, fix the offending template and rerun from Step 1.
 
@@ -2574,13 +2660,10 @@ Expected: both print the same number — every page inherits the shared footer.
 
 ```bash
 cd "C:/The Cosmic Microwave/website"
-for f in $(find public -name '*.html'); do
-  printf '%s ' "$f"
-  grep -c 'class="skip-link"' "$f"
-done
+grep -rc 'class="skip-link"' public --include='*.html'
 ```
 
-Expected: every line ends in `1`.
+Expected: every line ends in `:1`.
 
 ```bash
 grep -rc 'aria-expanded' public/index.html public/sponsor/index.html \
