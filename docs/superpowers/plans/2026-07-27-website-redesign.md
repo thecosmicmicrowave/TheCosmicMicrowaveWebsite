@@ -15,7 +15,7 @@
 These apply to every task. A task's requirements implicitly include this section.
 
 - **Hugo v0.163.3 extended.** Do not add dependencies, npm packages, Tailwind, or any build tooling. Stock Hugo Pipes only.
-- **Colors are fixed.** `--bg-primary: #0a0a14`, `--bg-secondary: #111128`, `--bg-card: rgba(20, 20, 50, 0.7)`, `--text-primary: #f0f0ff`, `--text-secondary: #b8b8e0`, `--accent-1: #7b4cff`, `--accent-2: #ff3b30`, `--accent-3: #ff6b6b`. Do not invent new colors or alter these values.
+- **Colors are fixed.** `--bg-primary: #0a0a14`, `--bg-secondary: #111128`, `--bg-card: rgba(20, 20, 50, 0.7)`, `--text-primary: #f0f0ff`, `--text-secondary: #b8b8e0`, `--accent-1: #7b4cff`, `--accent-2: #ff3b30`, `--accent-3: #ff6b6b`, `--accent-deep: #b30000`. Do not invent new colors or alter these values. `--accent-deep` is not new: `#b30000` is the second stop of the button gradient in all four original layouts (`layouts/index.html:275` and `:391` on `main`, and the same rule in `donate`, `posts/list` and `sponsor`). The redesign tokenizes it rather than repeating the literal. The `--border-*` and `--glow-*` tokens are alpha derivations of `--accent-1` and `--accent-2`, not new hues.
 - **Fonts are fixed.** Orbitron for display only (h1, h2, stat numbers, logo wordmark). Inter for everything else.
 - **No emoji anywhere in rendered output.** Not as icons, not decoratively. Use the SVG sprite.
 - **No `<style>` blocks in any template** after Task 6. All CSS lives in `assets/css/main.css`.
@@ -94,9 +94,9 @@ to prove the pipeline works end to end.
 **Interfaces:**
 - Consumes: nothing.
 - Produces:
-  - CSS custom properties listed in Global Constraints plus `--space-1` … `--space-9`, `--text-xs` … `--text-4xl`, `--elev-1` … `--elev-3`, `--dur`, `--dur-fast`, `--ease`, `--radius`.
-  - Utility classes `.container`, `.section`, `.section-title`, `.section-subtitle`, `.visually-hidden`, `.starfield`.
-  - `{{ partial "icon.html" (dict "name" "star") }}` → `<svg class="icon" aria-hidden="true"><use href="#i-star"></use></svg>`. Optional keys: `class` (extra classes appended), `size` (px number, default 24).
+  - CSS custom properties listed in Global Constraints plus `--border-soft`, `--border-warm`, `--glow-1`, `--glow-2`, `--space-1` … `--space-9`, `--text-xs` … `--text-4xl`, `--elev-1` … `--elev-3`, `--dur`, `--dur-fast`, `--ease`, `--radius`, `--radius-sm`, `--radius-pill`, `--header-h`. The Step 1 code block below is the authoritative list; this line is a summary of it.
+  - Utility classes `.container`, `.section`, `.section--alt`, `.section-title`, `.section-subtitle`, `.visually-hidden`, `.skip-link`, `.icon`, `.icon-sm`, `.icon-lg`, `.icon-brand`, `.starfield`.
+  - `{{ partial "icon.html" (dict "name" "star") }}` → `<svg class="icon " width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>`. Optional keys: `class` (extra classes appended), `size` (px number, default 24).
   - Sprite symbol IDs, all `24x24` viewBox: `i-rocket i-arrow-right i-send i-quote i-trophy i-cpu i-users i-star i-calendar i-mail i-map-pin i-chevron-down i-chevron-right i-orbit i-planet i-comet i-globe i-wrench i-package i-hammer i-heart i-check i-alert`.
   - `baseof.html` defines block `main` and block `title`.
 
@@ -550,7 +550,6 @@ Create `layouts/partials/head.html`. This is where the stylesheet gets piped:
 ```go-html-template
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | FTC 35817{{ end }}{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}FTC Team 35817 — The Cosmic Microwave. A robotics team from Lake Tapps, Washington building competitive robots and inspiring STEM.{{ end }}">
 
 <link rel="icon" type="image/png" href="/favicon-96x96.png">
@@ -566,6 +565,11 @@ Create `layouts/partials/head.html`. This is where the stylesheet gets piped:
 Note the font URL drops Orbitron 400 and Inter 300 — neither is used any more, and
 Orbitron is display-only.
 
+**`<title>` does not go here.** `{{ block }}` only resolves within the base-template
+chain. A `{{ block "title" }}` placed inside a partial is a separate template, so a
+page's `{{ define "title" }}` never reaches it and every page silently falls back to
+the default. The title block lives directly in `baseof.html` — see the next step.
+
 - [ ] **Step 5: Replace the base template**
 
 `layouts/_default/baseof.html` is currently the single line
@@ -575,6 +579,7 @@ Orbitron is display-only.
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | FTC 35817{{ end }}{{ end }}</title>
 {{ partial "head.html" . }}
 </head>
 <body>
@@ -702,6 +707,15 @@ grep -c 'fontawesome\|font-awesome' public/404.html
 ```
 
 Expected: `0`.
+
+```bash
+grep -o '<title>[^<]*</title>' public/404.html
+```
+
+Expected: `<title>Page Not Found | FTC 35817</title>` — proves the page's
+`{{ define "title" }}` actually overrides the block. If this shows Hugo's default
+`404 Page not found` instead, the title block is in the wrong template: it must be
+in `baseof.html`, not in a partial.
 
 - [ ] **Step 9: Commit**
 
