@@ -491,11 +491,18 @@ button { font: inherit; cursor: pointer; }
     border-top: 1px solid var(--border-soft);
     box-shadow: var(--elev-3);
     transform: translateY(-110%);
-    transition: transform var(--dur) var(--ease);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform var(--dur) var(--ease), visibility 0s linear var(--dur);
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  .nav__list.is-open { transform: translateY(0); }
+  .nav__list.is-open {
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
   .nav__list > li { width: 100%; }
   .nav__list > li:not(:last-child) { border-bottom: 1px solid var(--border-soft); }
   .nav__list > li > .nav__link { display: block; width: 100%; padding-block: var(--space-4); }
@@ -514,13 +521,22 @@ button { font: inherit; cursor: pointer; }
   .nav__link { font-size: var(--text-lg); padding-block: var(--space-3); }
   .nav__menu {
     position: static;
-    opacity: 1;
-    visibility: visible;
-    margin-top: var(--space-3);
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 0;
     background: transparent;
     border: none;
     box-shadow: none;
     padding: 0;
+    transition: opacity var(--dur) var(--ease), max-height var(--dur) var(--ease), visibility var(--dur) var(--ease);
+  }
+  #support-toggle[aria-expanded="true"] + .nav__menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: 180px;
+    margin-top: var(--space-3);
   }
   .nav__menu-link { padding: var(--space-4); }
   .nav__cta { width: 100%; min-height: 52px; }
