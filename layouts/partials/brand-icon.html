@@ -1,0 +1,4 @@
+{{- $name := . -}}
+{{- with resources.Get (printf "icons/brands/%s.svg" $name) -}}
+  {{- .Content | replaceRE `<svg` `<svg class="icon icon-brand" aria-hidden="true" focusable="false"` | safeHTML -}}
+{{- end -}}

@@ -1,1 +1,42 @@
-<!-- populated in Task 2 -->
+<header id="site-header" class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/logo_circle_nobg.png" width="48" height="48"
+           alt="The Cosmic Microwave logo">
+      <span class="brand__text">The Cosmic Microwave</span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list" id="nav-links">
+        <li><a class="nav__link" href="/#about">About</a></li>
+        <li><a class="nav__link" href="/#team">Team</a></li>
+        <li><a class="nav__link" href="/#news">News</a></li>
+        <li><a class="nav__link" href="/#contact">Contact</a></li>
+        <li class="nav__item--drop">
+          <button class="btn btn--primary nav__cta" id="support-toggle"
+                  aria-expanded="false" aria-controls="support-menu">
+            Support Us
+            {{ partial "icon.html" (dict "name" "chevron-down" "class" "icon-sm" "size" 18) }}
+          </button>
+          <div class="nav__menu" id="support-menu">
+            <a class="nav__menu-link" href="/sponsor/">
+              {{ partial "icon.html" (dict "name" "star" "class" "icon-sm" "size" 18) }}
+              <span><strong>Sponsor</strong><small>Partner with the team</small></span>
+            </a>
+            <a class="nav__menu-link" href="/donate/">
+              {{ partial "icon.html" (dict "name" "heart" "class" "icon-sm" "size" 18) }}
+              <span><strong>Donate</strong><small>Fund parts and travel</small></span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="hamburger" id="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+      <span class="visually-hidden">Toggle menu</span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
