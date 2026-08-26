@@ -554,6 +554,16 @@ button { font: inherit; cursor: pointer; }
 .donate-cta__text { color: var(--text-secondary); margin-bottom: var(--space-5); }
 .donate-cta__btn { width: 100%; }
 .donate-cta__note { color: var(--text-secondary); font-size: var(--text-xs); margin-top: var(--space-3); text-align: center; }
+.donate-cta__disclaimer {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-warm);
+  text-align: center;
+}
+.donate-cta__disclaimer a { color: var(--accent-2); text-decoration: underline; text-underline-offset: 3px; }
 
 .donate-uses__title { font-size: var(--text-xl); font-weight: 600; margin-bottom: var(--space-5); }
 .donate-uses__list { list-style: none; display: grid; gap: var(--space-5); }
