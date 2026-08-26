@@ -478,23 +478,38 @@ button { font: inherit; cursor: pointer; }
 @media (max-width: 900px) {
   .nav__list {
     position: fixed;
-    inset-block: 0;
-    inset-inline-end: -100%;
-    width: min(320px, 88vw);
+    inset-block: var(--header-h) 0;
+    inset-inline: 0;
+    width: 100%;
+    max-height: none;
     flex-direction: column;
     align-items: stretch;
-    justify-content: center;
-    gap: var(--space-4);
-    padding: calc(var(--header-h) + var(--space-6)) var(--space-6) var(--space-6);
-    background: rgba(17, 17, 40, 0.98);
-    border-inline-start: 1px solid var(--border-soft);
+    justify-content: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-7) var(--space-5) var(--space-8);
+    background: rgba(17, 17, 40, 0.99);
+    border-top: 1px solid var(--border-soft);
     box-shadow: var(--elev-3);
-    transition: inset-inline-end var(--dur) var(--ease);
+    transform: translateY(-110%);
+    transition: transform var(--dur) var(--ease);
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
-  .nav__list.is-open { inset-inline-end: 0; }
+  .nav__list.is-open { transform: translateY(0); }
   .nav__list > li { width: 100%; }
-  .hamburger { display: flex; position: relative; z-index: 1001; }
+  .nav__list > li:not(:last-child) { border-bottom: 1px solid var(--border-soft); }
+  .nav__list > li > .nav__link { display: block; width: 100%; padding-block: var(--space-4); }
+  .nav__list > li:last-child { margin-top: var(--space-3); border-bottom: none; }
+  .hamburger {
+    display: flex;
+    position: relative;
+    z-index: 1001;
+    width: 52px;
+    height: 52px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    background: rgba(17, 17, 40, 0.8);
+  }
   .nav__item--drop { position: static; }
   .nav__link { font-size: var(--text-lg); padding-block: var(--space-3); }
   .nav__menu {
@@ -507,9 +522,14 @@ button { font: inherit; cursor: pointer; }
     box-shadow: none;
     padding: 0;
   }
-  .nav__cta { width: 100%; }
+  .nav__menu-link { padding: var(--space-4); }
+  .nav__cta { width: 100%; min-height: 52px; }
 }
 @media (max-width: 480px) {
+  .site-header { padding-block: var(--space-3); }
+  .brand__mark { width: 42px; height: 42px; }
+  .hamburger { width: 48px; height: 48px; }
+  .nav__list { inset-block-start: 66px; padding-inline: var(--space-4); }
   .brand__text { display: none; }
   .site-footer__inner { flex-direction: column; text-align: center; }
   .site-footer__links { justify-content: center; }
