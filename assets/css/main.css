@@ -478,8 +478,10 @@ button { font: inherit; cursor: pointer; }
 @media (max-width: 900px) {
   .nav__list {
     position: fixed;
-    inset-block: var(--header-h) 0;
-    inset-inline: 0;
+    inset-block-start: var(--header-h);
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
     width: 100%;
     max-height: none;
     flex-direction: column;
@@ -501,6 +503,7 @@ button { font: inherit; cursor: pointer; }
     transform: translateY(0);
     visibility: visible;
     pointer-events: auto;
+    z-index: 1000;
     transition: transform var(--dur) var(--ease), visibility 0s linear 0s;
   }
   .nav__list > li { width: 100%; }
