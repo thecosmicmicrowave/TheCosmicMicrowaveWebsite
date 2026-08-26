@@ -501,7 +501,7 @@ button { font: inherit; cursor: pointer; }
     transform: translateY(0);
     visibility: visible;
     pointer-events: auto;
-    transition-delay: 0s;
+    transition: transform var(--dur) var(--ease), visibility 0s linear 0s;
   }
   .nav__list > li { width: 100%; }
   .nav__list > li:not(:last-child) { border-bottom: 1px solid var(--border-soft); }
