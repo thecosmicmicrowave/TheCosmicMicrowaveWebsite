@@ -1,0 +1,12 @@
+# Company/organization sponsors, shown as a logo wall on /sponsor/.
+# Add one entry per sponsor once they've signed on — nothing here is
+# fabricated, so this stays empty until a real sponsor exists.
+#
+# tier must be one of: universe, galaxy, star, planet, meteor
+#   (matches the tiers on /sponsor/ — logo size scales with tier)
+# logo is a filename under static/sponsors/ (svg or png, transparent background)
+#
+# - name: "Acme Robotics Supply"
+#   tier: star
+#   logo: "acme.svg"
+#   url: "https://acme.example"

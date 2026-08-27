@@ -156,6 +156,8 @@ Two corner languages, used consistently by role: `--radius-pill` (999px) on ever
 ### Row Lists (signature pattern)
 Any roster, log, or repeated-offer content (team roster, news index, sponsor tiers, in-kind partners) renders as `.rows` — a flex column where every child after the first gets a `1px solid --border-warm` top divider and `--space-5` vertical padding. This replaced a same-size icon+heading+text card grid across every one of these sections in the 2026-08 consolidation. New repeated content defaults to a row list; reach for a card grid only when the items are genuinely distinct destinations (e.g. the sponsor page's one spotlighted tier), not a roster.
 
+**Deliberate exception — sponsor tier weighting.** The sponsor page's Star Tier keeps the only full `.tier-spotlight` card ("Most popular"); Universe and Galaxy get `.tier-row--lg` (bigger icon, Orbitron name, full tagline, primary button) while Planet and Meteor stay minimal `.tier-row`. This is an intentional pricing nudge toward the $500–999 tier, not an oversight — Universe being the largest dollar ask does not mean it gets the most prominent container. Confirmed 2026-08-27; don't "fix" this without a product conversation.
+
 ### Inputs / Fields
 - **Style:** `rgba(10,10,20,0.6)` fill, `1px solid rgba(255,255,255,0.08)` border, `--radius-sm` (10px) corners.
 - **Focus:** border shifts to `--accent-2`, plus a 3px `--glow-2` ring — the same warm-accent language as button hover, so a field and a button read as the same control family.

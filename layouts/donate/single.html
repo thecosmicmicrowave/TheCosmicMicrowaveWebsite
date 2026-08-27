@@ -55,6 +55,23 @@
   </div>
 </section>
 
+<section class="section" id="supporters">
+  <div class="container">
+    <h2 class="section-title">Our Supporters</h2>
+    {{ $donors := .Site.Data.donors }}
+    {{ if $donors }}
+    <p class="section-subtitle">Thank you to the individuals whose generosity funds our season.</p>
+    <div class="donor-cloud">
+      {{ range $donors }}
+      <span class="donor-pill">{{ .name }}</span>
+      {{ end }}
+    </div>
+    {{ else }}
+    <p class="donor-empty">No individual donors on record yet &mdash; be the first to give.</p>
+    {{ end }}
+  </div>
+</section>
+
 <section class="section">
   <div class="container donate-alt">
     <h2 class="section-title">Prefer to partner?</h2>
