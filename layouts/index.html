@@ -166,6 +166,12 @@
       </div>
       {{ end }}
     </div>
+    <div class="news-archive-link">
+      <a href="/posts/" class="btn btn--secondary">
+        View all news
+        {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon-sm" "size" 18) }}
+      </a>
+    </div>
     {{ else }}
     <p class="news-empty">No news yet &mdash; check back soon.</p>
     {{ end }}

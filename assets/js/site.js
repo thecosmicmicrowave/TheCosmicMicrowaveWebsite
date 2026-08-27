@@ -89,6 +89,15 @@
     }
   }
 
+  /* ---- prefill contact form from ?interest= (sponsor tier / in-kind CTAs) ---- */
+  var messageField = document.getElementById('message');
+  if (messageField) {
+    var interest = new URLSearchParams(window.location.search).get('interest');
+    if (interest && !messageField.value) {
+      messageField.value = "I'm interested in " + interest + ". ";
+    }
+  }
+
   /* ---- contact form submit states ---- */
   var form = document.getElementById('contact-form');
   if (form) {

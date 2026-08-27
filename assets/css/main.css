@@ -147,14 +147,7 @@ button { font: inherit; cursor: pointer; }
   font-weight: 700;
   text-align: center;
   margin-bottom: var(--space-4);
-  /* solid colour first so the text survives without background-clip */
   color: var(--accent-3);
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-@supports (-webkit-background-clip: text) or (background-clip: text) {
-  .section-title { -webkit-text-fill-color: transparent; }
 }
 
 .section-subtitle {
@@ -565,12 +558,6 @@ button { font: inherit; cursor: pointer; }
   font-size: var(--text-3xl);
   font-weight: 900;
   color: var(--accent-3);
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-@supports (-webkit-background-clip: text) or (background-clip: text) {
-  .page-head__title { -webkit-text-fill-color: transparent; }
 }
 .page-head__lead {
   color: var(--text-secondary);
@@ -789,6 +776,7 @@ button { font: inherit; cursor: pointer; }
 .news-row p { color: var(--text-secondary); }
 .news-row .read-more { display: inline-flex; align-items: center; gap: var(--space-1); font-weight: 600; }
 .news-empty { color: var(--text-secondary); }
+.news-archive-link { display: flex; justify-content: center; margin-top: var(--space-6); }
 
 /* ============================================================
    Contact
