@@ -29,7 +29,7 @@
           <h2 class="sponsor-tier__title">{{ title $tier }} Sponsors</h2>
           <div class="sponsor-wall__row">
             {{ range $tierSponsors }}
-            <a class="sponsor-wall__logo sponsor-wall__logo--{{ $tier }}" href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}">
+            <a class="sponsor-wall__logo sponsor-wall__logo--{{ $tier }}"{{ with .url }} href="{{ . }}" target="_blank" rel="noopener noreferrer"{{ end }} aria-label="{{ .name }}">
               <img src="/sponsors/{{ .logo }}" alt="{{ .name }}" loading="lazy">
               <span class="sponsor-wall__name">{{ .name }}</span>
             </a>
