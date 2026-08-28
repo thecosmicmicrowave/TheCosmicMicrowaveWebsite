@@ -10,3 +10,8 @@
 #   tier: star
 #   logo: "acme.svg"
 #   url: "https://acme.example"
+
+- name: "Kimoni Eatss"
+  tier: meteor
+  logo: "kimonieatsMeteor.png"
+  url: "https://www.instagram.com/kimoni.eatss/"

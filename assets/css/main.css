@@ -956,6 +956,20 @@ button { font: inherit; cursor: pointer; }
    ============================================================ */
 .sponsor-wall {
   display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+.sponsor-tier__title {
+  text-align: center;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-3);
+  margin-bottom: var(--space-6);
+}
+.sponsor-wall__row {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -963,23 +977,25 @@ button { font: inherit; cursor: pointer; }
 }
 .sponsor-wall__logo {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  filter: grayscale(1);
-  opacity: 0.75;
-  transition: filter var(--dur) var(--ease), opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  gap: var(--space-2);
+  transition: transform var(--dur) var(--ease);
 }
-.sponsor-wall__logo:hover, .sponsor-wall__logo:focus-visible {
-  filter: grayscale(0);
-  opacity: 1;
-  transform: translateY(-2px);
+.sponsor-wall__logo:hover, .sponsor-wall__logo:focus-visible { transform: translateY(-2px); }
+.sponsor-wall__logo img { height: 136px; width: auto; max-width: 320px; object-fit: contain; }
+.sponsor-wall__logo--universe img { height: 200px; }
+.sponsor-wall__logo--galaxy img { height: 184px; }
+.sponsor-wall__logo--star img { height: 168px; }
+.sponsor-wall__logo--planet img { height: 152px; }
+.sponsor-wall__logo--meteor img { height: 136px; }
+.sponsor-wall__name {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  max-width: 240px;
+  text-align: center;
+  line-height: 1.3;
 }
-.sponsor-wall__logo img { height: 64px; width: auto; max-width: 180px; object-fit: contain; }
-.sponsor-wall__logo--universe img { height: 96px; }
-.sponsor-wall__logo--galaxy img { height: 80px; }
-.sponsor-wall__logo--star img { height: 64px; }
-.sponsor-wall__logo--planet img { height: 52px; }
-.sponsor-wall__logo--meteor img { height: 44px; }
 
 .founder-callout { max-width: 560px; margin-inline: auto; text-align: center; }
 .founder-callout h3 { font-size: var(--text-xl); font-weight: 600; margin-bottom: var(--space-3); }
@@ -996,5 +1012,5 @@ button { font: inherit; cursor: pointer; }
 .donor-empty { text-align: center; color: var(--text-secondary); }
 
 @media (max-width: 480px) {
-  .sponsor-wall { gap: var(--space-5) var(--space-6); }
+  .sponsor-wall__row { gap: var(--space-5) var(--space-6); }
 }

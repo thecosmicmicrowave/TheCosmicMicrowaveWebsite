@@ -12,7 +12,7 @@
       <a href="#planet">Planet</a>
       <a href="#meteor">Meteor</a>
       <a href="#in-kind">In-kind &amp; mentorship</a>
-      <a href="#sponsors">Our sponsors</a>
+      <a href="/sponsors/">Our sponsors</a>
     </nav>
   </div>
 </section>
@@ -143,31 +143,15 @@
 </section>
 
 <section class="section" id="sponsors">
-  <div class="container">
-    <h2 class="section-title">Our Sponsors</h2>
-    {{ $sponsors := .Site.Data.sponsors }}
-    {{ if $sponsors }}
-    <p class="section-subtitle">Thank you to the organizations backing our season.</p>
-    <div class="sponsor-wall">
-      {{ range slice "universe" "galaxy" "star" "planet" "meteor" }}
-        {{ $tier := . }}
-        {{ range where $sponsors "tier" $tier }}
-        <a class="sponsor-wall__logo sponsor-wall__logo--{{ $tier }}" href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}">
-          <img src="/sponsors/{{ .logo }}" alt="{{ .name }}" loading="lazy">
-        </a>
-        {{ end }}
-      {{ end }}
-    </div>
-    {{ else }}
-    <div class="card founder-callout">
-      <h3>Be our first sponsor</h3>
-      <p>No sponsors on the books yet &mdash; this season, and this wall, are wide open. Every tier above gets logo placement on the robot and this site the moment you sign on.</p>
-      <a class="btn btn--primary" href="#tiers">
-        {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon-sm" "size" 18) }}
-        See sponsorship tiers
+  <div class="container donate-alt">
+    <h2 class="section-title">See the organizations behind us</h2>
+    <p class="section-subtitle">Every sponsor makes our season possible. Meet the businesses and organizations powering the team.</p>
+    <div class="donate-alt__actions">
+      <a class="btn btn--primary" href="/sponsors/">
+        {{ partial "icon.html" (dict "name" "star" "class" "icon-sm" "size" 18) }}
+        See our sponsors
       </a>
     </div>
-    {{ end }}
   </div>
 </section>
 

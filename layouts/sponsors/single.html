@@ -1,0 +1,54 @@
+{{ define "main" }}
+<section class="section page-head">
+  <div class="container">
+    <h1 class="page-head__title">Our Sponsors</h1>
+    <p class="page-head__lead">
+      The organizations that make our season possible &mdash; thank you for powering the team.
+    </p>
+    <nav class="tier-jump" aria-label="Jump to sponsor tier">
+      <a href="#universe">Universe</a>
+      <a href="#galaxy">Galaxy</a>
+      <a href="#star">Star</a>
+      <a href="#planet">Planet</a>
+      <a href="#meteor">Meteor</a>
+      <a href="/sponsor/">Become a sponsor</a>
+    </nav>
+  </div>
+</section>
+
+<section class="section" id="sponsors">
+  <div class="container">
+    {{ $sponsors := .Site.Data.sponsors }}
+    {{ if $sponsors }}
+    <div class="sponsor-wall">
+      {{ range slice "universe" "galaxy" "star" "planet" "meteor" }}
+        {{ $tier := . }}
+        {{ $tierSponsors := where $sponsors "tier" $tier }}
+        {{ if $tierSponsors }}
+        <div class="sponsor-tier" id="{{ $tier }}">
+          <h2 class="sponsor-tier__title">{{ title $tier }} Sponsors</h2>
+          <div class="sponsor-wall__row">
+            {{ range $tierSponsors }}
+            <a class="sponsor-wall__logo sponsor-wall__logo--{{ $tier }}" href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}">
+              <img src="/sponsors/{{ .logo }}" alt="{{ .name }}" loading="lazy">
+              <span class="sponsor-wall__name">{{ .name }}</span>
+            </a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      {{ end }}
+    </div>
+    {{ else }}
+    <div class="card founder-callout">
+      <h3>Be our first sponsor</h3>
+      <p>No sponsors on the books yet &mdash; this season, and this wall, are wide open. Every tier gets logo placement on the robot and this site the moment you sign on.</p>
+      <a class="btn btn--primary" href="/sponsor/#tiers">
+        {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon-sm" "size" 18) }}
+        See sponsorship tiers
+      </a>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
