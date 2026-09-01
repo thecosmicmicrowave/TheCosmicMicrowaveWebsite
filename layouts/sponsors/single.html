@@ -19,14 +19,18 @@
 <section class="section" id="sponsors">
   <div class="container">
     {{ $sponsors := .Site.Data.sponsors }}
+    {{ $tierIcons := dict "universe" "rocket" "galaxy" "orbit" "star" "star" "planet" "planet" "meteor" "comet" }}
     {{ if $sponsors }}
     <div class="sponsor-wall">
       {{ range slice "universe" "galaxy" "star" "planet" "meteor" }}
         {{ $tier := . }}
         {{ $tierSponsors := where $sponsors "tier" $tier }}
         {{ if $tierSponsors }}
-        <div class="sponsor-tier" id="{{ $tier }}">
-          <h2 class="sponsor-tier__title">{{ title $tier }} Sponsors</h2>
+        <div class="sponsor-tier sponsor-tier--{{ $tier }}" id="{{ $tier }}">
+          <h2 class="sponsor-tier__title">
+            {{ partial "icon.html" (dict "name" (index $tierIcons $tier) "class" "sponsor-tier__icon" "size" 28) }}
+            <span>{{ title $tier }} Sponsors</span>
+          </h2>
           <div class="sponsor-wall__row">
             {{ range $tierSponsors }}
             <a class="sponsor-wall__logo sponsor-wall__logo--{{ $tier }}"{{ with .url }} href="{{ . }}" target="_blank" rel="noopener noreferrer"{{ end }} aria-label="{{ .name }}">

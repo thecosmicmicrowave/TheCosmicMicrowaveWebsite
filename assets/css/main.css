@@ -974,7 +974,19 @@ button { font: inherit; cursor: pointer; }
   flex-direction: column;
   gap: var(--space-8);
 }
+.sponsor-tier {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: var(--space-7);
+  background: var(--bg-card);
+}
 .sponsor-tier__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
   text-align: center;
   font-size: var(--text-xl);
   font-weight: 700;
@@ -983,6 +995,175 @@ button { font: inherit; cursor: pointer; }
   color: var(--accent-3);
   margin-bottom: var(--space-6);
 }
+.sponsor-tier__icon { flex: none; }
+
+/* --- Universe: vast deep-space nebula, oversized --- */
+.sponsor-tier--universe {
+  padding: clamp(var(--space-7), 7vw, 128px);
+  border-color: rgba(123, 76, 255, 0.55);
+  background:
+    radial-gradient(ellipse at 50% 115%, rgba(179, 0, 0, 0.4), transparent 60%),
+    radial-gradient(ellipse at 12% 90%, rgba(64, 180, 255, 0.22), transparent 55%),
+    radial-gradient(ellipse at 88% 12%, rgba(123, 76, 255, 0.4), transparent 55%),
+    radial-gradient(ellipse at 18% 8%, rgba(123, 76, 255, 0.3), transparent 50%),
+    radial-gradient(circle at 55% 45%, rgba(64, 180, 255, 0.1), transparent 55%),
+    linear-gradient(180deg, #060618 0%, #0c0c2b 55%, #1a1a44 100%);
+  box-shadow:
+    0 0 0 1px rgba(123, 76, 255, 0.25),
+    0 0 100px rgba(123, 76, 255, 0.25),
+    inset 0 0 80px rgba(0, 0, 0, 0.5);
+}
+.sponsor-tier--universe::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 25px 15px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 90px 60px, #b8b8e0, transparent),
+    radial-gradient(1px 1px at 160px 30px, rgba(64, 180, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 220px 100px, #fff, transparent),
+    radial-gradient(2px 2px at 300px 50px, rgba(255, 107, 107, 0.85), transparent),
+    radial-gradient(1px 1px at 350px 140px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 420px 90px, rgba(186, 154, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 120px 150px, #fff, transparent),
+    radial-gradient(1px 1px at 280px 180px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 60px 220px, rgba(64, 180, 255, 0.8), transparent);
+  background-size: 460px 260px;
+  opacity: 0.6;
+}
+.sponsor-tier--universe .sponsor-tier__title {
+  font-size: clamp(var(--text-2xl), 4.5vw, var(--text-4xl));
+  letter-spacing: 0.14em;
+  color: #fff;
+  text-shadow: 0 0 24px rgba(123, 76, 255, 0.9), 0 0 64px rgba(255, 59, 48, 0.45);
+}
+.sponsor-tier--universe .sponsor-tier__icon { width: 46px; height: 46px; }
+.sponsor-tier--universe .sponsor-wall__row { gap: var(--space-9) var(--space-8); }
+
+/* --- Galaxy: sweeping spiral arms --- */
+.sponsor-tier--galaxy {
+  padding: var(--space-8);
+  border-color: rgba(123, 76, 255, 0.4);
+  background:
+    radial-gradient(ellipse at 50% 115%, rgba(123, 76, 255, 0.25), transparent 60%),
+    radial-gradient(circle at 80% 8%, rgba(64, 180, 255, 0.14), transparent 42%),
+    var(--bg-card);
+}
+.sponsor-tier--galaxy::before {
+  /* soft tilted milky-way band */
+  content: '';
+  position: absolute;
+  top: -18%;
+  left: -12%;
+  width: 124%;
+  height: 62%;
+  pointer-events: none;
+  transform: rotate(-10deg);
+  filter: blur(16px);
+  background:
+    linear-gradient(112deg,
+      transparent 0%,
+      rgba(123, 76, 255, 0.22) 28%,
+      rgba(186, 154, 255, 0.28) 40%,
+      rgba(255, 255, 255, 0.3) 47%,
+      rgba(255, 214, 170, 0.18) 54%,
+      rgba(64, 180, 255, 0.22) 62%,
+      transparent 85%),
+    radial-gradient(ellipse at 52% 50%, rgba(255, 255, 255, 0.35), transparent 60%);
+  opacity: 0.9;
+}
+.sponsor-tier--galaxy::after {
+  /* scattered companion stars */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 60px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 140px 90px, rgba(186, 154, 255, 0.9), transparent),
+    radial-gradient(1.5px 1.5px at 200px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 280px 120px, rgba(64, 180, 255, 0.85), transparent),
+    radial-gradient(1px 1px at 90px 150px, #fff, transparent),
+    radial-gradient(1px 1px at 340px 170px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 400px 220px, rgba(255, 220, 180, 0.8), transparent),
+    radial-gradient(1px 1px at 210px 230px, #fff, transparent);
+  background-size: 460px 280px;
+  opacity: 0.6;
+}
+.sponsor-tier--galaxy .sponsor-tier__title {
+  font-size: var(--text-2xl);
+  color: #cbb9ff;
+  text-shadow: 0 0 18px rgba(123, 76, 255, 0.6);
+}
+.sponsor-tier--galaxy .sponsor-tier__icon { width: 40px; height: 40px; }
+.sponsor-tier--galaxy .sponsor-wall__row { gap: var(--space-8); }
+
+/* --- Star: radiant burst --- */
+.sponsor-tier--star {
+  padding: var(--space-8) var(--space-7);
+  border-color: rgba(255, 107, 107, 0.4);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 170, 90, 0.24), transparent 58%),
+    repeating-conic-gradient(from 0deg at 50% 0%, rgba(255, 107, 107, 0.07) 0deg 9deg, transparent 9deg 18deg),
+    var(--bg-card);
+}
+.sponsor-tier--star .sponsor-tier__title {
+  color: #ffd9a8;
+  text-shadow: 0 0 20px rgba(255, 140, 90, 0.75);
+}
+.sponsor-tier--star .sponsor-tier__icon { width: 34px; height: 34px; }
+.sponsor-tier--star .sponsor-wall__row { gap: var(--space-7); }
+
+/* --- Planet: ringed world --- */
+.sponsor-tier--planet {
+  padding: var(--space-7);
+  border-color: rgba(94, 178, 255, 0.35);
+  background:
+    radial-gradient(circle at 82% 16%, rgba(94, 178, 255, 0.16), transparent 46%),
+    var(--bg-card);
+}
+.sponsor-tier--planet::before {
+  content: '';
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 2px solid rgba(94, 178, 255, 0.4);
+  box-shadow: 0 0 26px rgba(94, 178, 255, 0.3), inset 0 0 18px rgba(94, 178, 255, 0.22);
+}
+.sponsor-tier--planet .sponsor-tier__title {
+  color: #a9dcff;
+  text-shadow: 0 0 16px rgba(94, 178, 255, 0.55);
+}
+.sponsor-tier--planet .sponsor-tier__icon { width: 30px; height: 30px; }
+.sponsor-tier--planet .sponsor-wall__row { gap: var(--space-6) var(--space-7); }
+
+/* --- Meteor: small, dim, fast trail --- */
+.sponsor-tier--meteor {
+  padding: var(--space-5);
+  border: 1px dashed rgba(255, 59, 48, 0.35);
+  background: linear-gradient(180deg, rgba(255, 59, 48, 0.1), var(--bg-card) 38%);
+}
+.sponsor-tier--meteor::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 10%;
+  width: 180px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(255, 107, 107, 0.9), rgba(255, 107, 107, 0));
+}
+.sponsor-tier--meteor .sponsor-tier__title {
+  font-size: var(--text-lg);
+  color: rgba(255, 150, 150, 0.92);
+  margin-bottom: var(--space-5);
+}
+.sponsor-tier--meteor .sponsor-tier__icon { width: 22px; height: 22px; }
+.sponsor-tier--meteor .sponsor-wall__row { gap: var(--space-5) var(--space-6); }
 .sponsor-wall__row {
   display: flex;
   flex-wrap: wrap;
@@ -998,12 +1179,11 @@ button { font: inherit; cursor: pointer; }
   transition: transform var(--dur) var(--ease);
 }
 .sponsor-wall__logo:hover, .sponsor-wall__logo:focus-visible { transform: translateY(-2px); }
-.sponsor-wall__logo img { height: 136px; width: auto; max-width: 320px; object-fit: contain; }
-.sponsor-wall__logo--universe img { height: 200px; }
-.sponsor-wall__logo--galaxy img { height: 184px; }
-.sponsor-wall__logo--star img { height: 168px; }
-.sponsor-wall__logo--planet img { height: 152px; }
-.sponsor-wall__logo--meteor img { height: 136px; }
+.sponsor-wall__logo img { height: 100px; width: auto; max-width: 400px; object-fit: contain; }
+.sponsor-wall__logo--universe img { height: 280px; }
+.sponsor-wall__logo--galaxy img { height: 230px; }
+.sponsor-wall__logo--star img { height: 180px; }
+.sponsor-wall__logo--planet img { height: 140px; }
 .sponsor-wall__name {
   font-size: var(--text-base);
   color: var(--text-secondary);
@@ -1028,4 +1208,9 @@ button { font: inherit; cursor: pointer; }
 
 @media (max-width: 480px) {
   .sponsor-wall__row { gap: var(--space-5) var(--space-6); }
+  .sponsor-tier { padding: var(--space-5); }
+  .sponsor-tier--universe { padding: var(--space-7) var(--space-5); }
+  .sponsor-tier--meteor { padding: var(--space-4); }
+  .sponsor-tier--planet::before { display: none; }
+  .sponsor-tier--galaxy::before { display: none; }
 }

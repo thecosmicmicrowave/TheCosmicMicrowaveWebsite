@@ -20,3 +20,8 @@
   tier: meteor
   logo: "kidscaretooMeteor.png"
   url: "https://www.kidscaretoo.com/"
+
+- name: "Hillcroft Medical Clinic Association"
+  tier: star
+  logo: "HMC-logo.jpeg"
+  url: "https://hmcdoctors.com"
