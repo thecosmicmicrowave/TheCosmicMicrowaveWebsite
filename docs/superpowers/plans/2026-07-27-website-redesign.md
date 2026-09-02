@@ -1565,7 +1565,6 @@ brackets:
       <li class="team-card card card--interactive"><span class="team-card__avatar" aria-hidden="true">CW</span><h3 class="team-card__name">Charlotte Wester</h3><p class="team-card__role">Mechanical Lead</p><p class="team-card__bio">Experienced at CAD and assembly. Freshman at Auburn Riverside High School, formerly on 27393.</p></li>
       <li class="team-card card card--interactive"><span class="team-card__avatar" aria-hidden="true">CB</span><h3 class="team-card__name">Christian Bautista</h3><p class="team-card__role">Outreach &amp; Programming</p><p class="team-card__bio">Experienced at programming and outreach. Freshman at Auburn Riverside High School, formerly on 27393.</p></li>
       <li class="team-card card card--interactive"><span class="team-card__avatar" aria-hidden="true">ER</span><h3 class="team-card__name">Emmett Riemer</h3><p class="team-card__role">Mechanical &amp; Outreach</p><p class="team-card__bio">Experienced at assembly and outreach. Freshman at Bellarmine Prep High School, formerly on 27393.</p></li>
-      <li class="team-card card card--interactive"><span class="team-card__avatar" aria-hidden="true">QF</span><h3 class="team-card__name">Quinn Feldmann</h3><p class="team-card__role">Mechanical</p><p class="team-card__bio">Experienced at CAD and assembly. Freshman at Auburn Riverside High School, formerly on 27393.</p></li>
     </ul>
   </div>
 </section>
