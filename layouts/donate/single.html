@@ -14,16 +14,23 @@
     <div class="donate-cta card">
       <h2 class="donate-cta__title">Make a donation</h2>
       <p class="donate-cta__text">
-        Donations are processed through Washington FIRST Robotics, a registered
-        non-profit. Your contribution is tax-deductible.
+        Your contribution supports the team directly. Donations via Give Lively are
+        processed through Washington FIRST Robotics and are tax-deductible.
       </p>
       <a class="btn btn--primary donate-cta__btn"
-         href="https://secure.givelively.org/donate/washington-first-robotics/the-cosmic-microwave"
+         href="https://www.paypal.com/ncp/payment/GX525G2PT9446"
          target="_blank" rel="noopener noreferrer">
         {{ partial "icon.html" (dict "name" "heart" "class" "icon-sm" "size" 18) }}
         Donate now
       </a>
-      <p class="donate-cta__note">Opens Give Lively in a new tab.</p>
+      <p class="donate-cta__note">Opens PayPal in a new tab.</p>
+      <p class="donate-cta__note">Also available via our Give Lively page (tax-deductible through Washington FIRST Robotics). PayPal is preferred:</p>
+      <a class="btn btn--secondary donate-cta__btn"
+         href="https://secure.givelively.org/donate/washington-first-robotics/the-cosmic-microwave"
+         target="_blank" rel="noopener noreferrer">
+        {{ partial "icon.html" (dict "name" "heart" "class" "icon-sm" "size" 18) }}
+        Donate via Give Lively
+      </a>
       <p class="donate-cta__disclaimer">
         Donations made here support the team but do not include sponsorship benefits.
         If you would like sponsor recognition or other sponsor benefits, please visit our
