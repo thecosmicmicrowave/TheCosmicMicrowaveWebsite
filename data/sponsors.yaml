@@ -21,7 +21,17 @@
   logo: "kidscaretooMeteor.png"
   url: "https://www.kidscaretoo.com/"
 
+- name: "QT Optometry"
+  tier: planet
+  logo: "QTOptometryPlanet.jpg"
+  url: "https://qtoptometry.com"
+
 - name: "Hillcroft Medical Clinic Association"
   tier: star
   logo: "HMC-logo.jpeg"
   url: "https://hmcdoctors.com"
+
+- name: "Streepy Septic Design"
+  tier: galaxy
+  logo: "StreepySepticGalaxy.png"
+  url: "https://streepysepticdesign.com"
