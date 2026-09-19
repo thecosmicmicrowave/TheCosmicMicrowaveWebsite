@@ -40,3 +40,8 @@
   tier: planet
   logo: "CTAssociatesPlanet.png"
   url: "https://ctnassociates.com"
+
+- name: "Uline"
+  tier: star
+  logo: "UlineStar.png"
+  url: "https://www.uline.com"
