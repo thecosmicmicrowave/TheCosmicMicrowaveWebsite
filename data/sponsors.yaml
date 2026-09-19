@@ -35,3 +35,8 @@
   tier: galaxy
   logo: "StreepySepticGalaxy.png"
   url: "https://streepysepticdesign.com"
+
+- name: "CT & Associates LLC"
+  tier: planet
+  logo: "CTAssociatesPlanet.png"
+  url: "https://ctnassociates.com"
