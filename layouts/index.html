@@ -27,7 +27,32 @@
       </div>
     </div>
     <div class="hero-image">
-      <img src="/logo_badge_nobg.png" alt="The Cosmic Microwave &mdash; FTC 35817" width="360" height="360">
+      <model-viewer
+        id="hero-robot"
+        class="hero-robot"
+        src="/robot.glb"
+        poster="/robot-poster.webp"
+        alt="Interactive 3D model of FTC Team 35817's competition robot. Drag to rotate."
+        camera-controls
+        disable-zoom
+        touch-action="pan-y"
+        auto-rotate
+        auto-rotate-delay="0"
+        rotation-per-second="18deg"
+        camera-orbit="120deg 72deg 120%"
+        min-camera-orbit="auto auto 70%"
+        max-camera-orbit="auto auto 180%"
+        interaction-prompt="none"
+        environment-image="neutral"
+        exposure="1.15"
+        shadow-intensity="0"
+        loading="eager"
+        reveal="auto">
+      </model-viewer>
+      <p class="hero-robot__hint" aria-hidden="true">Drag to explore</p>
+      <noscript>
+        <img src="/robot-poster.webp" alt="FTC Team 35817's competition robot" width="360" height="360">
+      </noscript>
     </div>
   </div>
   <div class="scroll-cue" aria-hidden="true">
@@ -220,4 +245,18 @@
     </div>
   </div>
 </section>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+<script>
+  (function () {
+    var mv = document.getElementById('hero-robot');
+    if (!mv) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function sync() {
+      if (reduce.matches) { mv.removeAttribute('auto-rotate'); }
+      else { mv.setAttribute('auto-rotate', ''); }
+    }
+    sync();
+    reduce.addEventListener ? reduce.addEventListener('change', sync) : reduce.addListener(sync);
+  })();
+</script>
 {{ end }}
