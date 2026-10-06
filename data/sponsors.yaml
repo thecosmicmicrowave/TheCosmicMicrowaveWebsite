@@ -49,3 +49,7 @@
 - name: "Sumner Lawn 'n Saw"
   tier: planet
   logo: "SumnerLawnNSawPlanet.jpg"
+
+- name: "NOBLE"
+  tier: galaxy
+  logo: "NobleGalaxy.png"
