@@ -62,3 +62,7 @@ Contact form submits to Formspree (`https://formspree.io/f/xzdnbjjr`). Donations
 ## Accessibility & Inclusion
 
 No project-specific requirement beyond general good practice: visible focus states on every interactive element, WCAG AA contrast, full keyboard operability. Already partly established in `assets/css/main.css`; must extend to the pages still pending migration.
+
+## Donation flow update (2026-10-08)
+
+Give Lively was removed from the site at the team's request. `/donate/` now offers PayPal only (`paypal.com/ncp/payment/GX525G2PT9446`). Earlier mentions of Give Lively in this file are historical. The page no longer states that donations are tax-deductible, since that claim was tied to the Give Lively / Washington FIRST Robotics route.
