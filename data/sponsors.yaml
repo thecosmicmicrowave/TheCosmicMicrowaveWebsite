@@ -57,7 +57,9 @@
 - name: "Machine Repair & Design"
   tier: galaxy
   logo: "MachineRepairDesignGalaxy.png"
+  url: "https://mrdinc.com"
 
 - name: "Forthright Insurance Services"
   tier: planet
   logo: "ForthrightPlanet.png"
+  url: "https://www.forthrightins.com"
