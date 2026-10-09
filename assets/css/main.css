@@ -550,6 +550,9 @@ button { font: inherit; cursor: pointer; }
 .page-head__title em { font-style: normal; color: var(--red); }
 .page-head__lead { color: var(--ink-2); font-size: var(--text-lg); max-width: 56ch; margin-top: var(--space-5); }
 .page-head + .section { padding-top: var(--space-7); }
+/* sky map rising off the right edge of a page head */
+.page-head--cmb { overflow: hidden; }
+.page-head--cmb > .cmb { position: absolute; top: 50%; right: -22%; width: min(70%, 900px); transform: translateY(-42%); opacity: 0.8; z-index: 0; }
 
 .tier-jump { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin-top: var(--space-6); }
 .tier-jump a {
@@ -707,6 +710,7 @@ a.sponsor-card:hover .sponsor-card__visit { color: var(--red); }
   .hero { min-height: auto; padding-top: calc(var(--header-h) + var(--space-6)); }
   .hero-grid, .about-grid, .contact-grid, .donate-layout { grid-template-columns: minmax(0, 1fr); gap: var(--space-7); }
   .hero-stage { order: 2; }
+  .page-head--cmb > .cmb { width: 120%; right: -60%; opacity: 0.55; }
   .hero-stage .cmb { width: 135%; }
   .hero-robot { height: min(420px, 90vw); }
   .readout__row { grid-template-columns: repeat(2, 1fr); }

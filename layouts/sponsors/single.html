@@ -1,11 +1,12 @@
 {{ define "main" }}
-<section class="section page-head">
+<section class="section page-head page-head--cmb">
+  {{ partial "cmb.html" (dict "id" "cmb-head") }}
   <div class="container">
     <p class="eyebrow">Sponsors <span class="rule"></span> FTC 35817</p>
     <h1 class="page-head__title">Zero fees. <em>Fully fueled.</em></h1>
     <p class="page-head__lead">
-      We charge no membership fees, so every part, registration, and mile of travel is covered by
-      the organizations below. Thank you for powering the team.
+      We charge no membership fees, so we rely on sponsors like these to cover robot parts, event
+      travel, tools, and registration. Thank you for powering the team.
     </p>
     <nav class="tier-jump" aria-label="Sponsor links">
       <a href="/sponsor/">Become a sponsor</a>
@@ -68,8 +69,8 @@
   <div class="container">
     <div class="closing">
       <div>
-        <h2>Put your logo on the robot</h2>
-        <p>Five tiers, from $100. Every sponsor gets logo placement and the monthly Cosmic Dispatch newsletter.</p>
+        <h2>Join the wall</h2>
+        <p>Five tiers, from $100. Every sponsor gets a logo on this site and the monthly Cosmic Dispatch newsletter.</p>
         <a class="btn btn--primary" href="/sponsor/">See sponsorship tiers</a>
       </div>
       <div>

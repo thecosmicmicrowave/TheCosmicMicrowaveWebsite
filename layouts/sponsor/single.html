@@ -1,5 +1,6 @@
 {{ define "main" }}
-<section class="section page-head">
+<section class="section page-head page-head--cmb">
+  {{ partial "cmb.html" (dict "id" "cmb-head") }}
   <div class="container">
     <p class="eyebrow">Sponsorship program <span class="rule"></span> 501(c)(3) &middot; EIN 42-4248249</p>
     <h1 class="page-head__title">Put your brand <em>in orbit.</em></h1>
@@ -64,7 +65,7 @@
           <li>Website highlight</li>
           <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
         </ul>
-        <a href="/?interest=Universe+Tier+sponsorship#contact" class="btn btn--primary">Become a Universe sponsor</a>
+        <a href="/?interest=Universe+Tier+sponsorship#contact" class="btn btn--secondary">Become a Universe sponsor</a>
       </div>
 
       <div class="tier" id="galaxy">
@@ -79,7 +80,7 @@
           <li>Website highlight</li>
           <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
         </ul>
-        <a href="/?interest=Galaxy+Tier+sponsorship#contact" class="btn btn--primary">Become a Galaxy sponsor</a>
+        <a href="/?interest=Galaxy+Tier+sponsorship#contact" class="btn btn--secondary">Become a Galaxy sponsor</a>
       </div>
 
       <div class="tier tier--featured" id="star">
