@@ -1,19 +1,33 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
-      <span class="site-footer__wordmark">The Cosmic<br>Microwave</span>
-      <p class="site-footer__timer mono"><b>00:00</b> &mdash; Ding. Thanks for reading. FTC 35817, Lake Tapps, Washington.</p>
-      <p class="site-footer__legal mono">&copy; {{ now.Format "2006" }} The Cosmic Microwave. All rights reserved.</p>
+      <img src="/logo_circle_nobg.png" width="56" height="56" alt="" loading="lazy">
+      <p>FTC Team 35817. A 501(c)(3) nonprofit robotics team from Lake Tapps, Washington.</p>
     </div>
-    <nav class="site-footer__links" aria-label="Footer">
-      <a href="/">Home</a>
+    <nav class="site-footer__col" aria-label="Explore">
+      <p class="mono">Explore</p>
       <a href="/#about">About</a>
-      <a href="/#team">Team</a>
+      <a href="/#team">Crew</a>
       <a href="/posts/">News</a>
-      <a href="/sponsor/">Become a Sponsor</a>
-      <a href="/sponsors/">Our Sponsors</a>
-      <a href="/donate/">Donate</a>
       <a href="/#contact">Contact</a>
     </nav>
+    <nav class="site-footer__col" aria-label="Support">
+      <p class="mono">Support</p>
+      <a href="/sponsor/">Become a sponsor</a>
+      <a href="/sponsors/">Our sponsors</a>
+      <a href="/donate/">Donate</a>
+    </nav>
+    <nav class="site-footer__col" aria-label="Connect">
+      <p class="mono">Connect</p>
+      <a href="mailto:thecosmicmicrowave35817@gmail.com">Email</a>
+      <a href="https://www.instagram.com/thecosmicmicrowave35817/">Instagram</a>
+      <a href="https://github.com/thecosmicmicrowave?tab=repositories">GitHub</a>
+      <a href="https://discord.gg/FX5WPRqqE">Discord</a>
+    </nav>
+  </div>
+  <p class="site-footer__giant" aria-hidden="true">Cosmic Microwave</p>
+  <div class="container site-footer__base mono">
+    <span><b>00:00</b> &mdash; Ding. Thanks for reading.</span>
+    <span>&copy; {{ now.Format "2006" }} The Cosmic Microwave</span>
   </div>
 </footer>

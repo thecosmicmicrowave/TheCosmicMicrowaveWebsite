@@ -1,5 +1,6 @@
 {{ define "main" }}
 <section class="hero" id="home">
+  {{ partial "cmb.html" (dict "id" "cmb-hero") }}
   <div class="container hero-grid">
     <div class="hero-content">
       <p class="eyebrow">FTC Team 35817 <span class="rule"></span> Lake Tapps, Washington</p>
@@ -18,7 +19,6 @@
       </div>
     </div>
     <div class="hero-stage">
-      {{ partial "cmb.html" (dict "id" "cmb-hero") }}
       <model-viewer
         id="hero-robot"
         class="hero-robot"
@@ -52,6 +52,14 @@
   </div>
 </section>
 
+<div class="ticker block-red" aria-hidden="true">
+  <div class="ticker__track">
+    {{ range seq 4 }}
+    <span>Cogitare est coquere</span><span>To think is to cook</span><span>FTC 35817</span><span>Lake Tapps, Washington</span>
+    {{ end }}
+  </div>
+</div>
+
 <section class="readout" aria-label="Team record at a glance">
   <div class="container readout__row">
     <div class="readout__item">
@@ -73,7 +81,7 @@
   </div>
 </section>
 
-<section id="about" class="section">
+<section id="about" class="section section--raised">
   <div class="container">
     <p class="eyebrow">01 &mdash; About <span class="rule"></span></p>
     <div class="about-grid">
@@ -114,6 +122,33 @@
   </div>
 </section>
 
+<section class="split" aria-labelledby="fees-title">
+  <div class="split__block block-red">
+    <p class="mono">Why sponsors matter</p>
+    <h2 id="fees-title">We charge zero membership fees, so any motivated student can join.</h2>
+    <p>Sponsors cover robot parts, event travel, tools, and registration fees.</p>
+    <a class="btn btn--primary" href="/sponsor/">Support us</a>
+  </div>
+  <div class="split__panel">
+    <p class="mono">Season budget</p>
+    <p class="split__total">$10,800</p>
+    {{ $budget := slice
+      (dict "l" "Robot electronics & supplies" "a" 4300)
+      (dict "l" "Travel funds" "a" 4300)
+      (dict "l" "Registration & 501(c)(3) fees" "a" 1600)
+      (dict "l" "Game elements & field setup" "a" 600) }}
+    <ul class="bars">
+      {{ range $budget }}
+      <li>
+        <span class="bars__label">{{ .l }}</span>
+        <span class="bars__amount mono">${{ lang.FormatNumber 0 .a }}</span>
+        <span class="bars__track"><span class="bars__fill" style="width: {{ div (mul .a 100) 4300 }}%"></span></span>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
 <section id="team" class="section">
   <div class="container">
     <p class="eyebrow">02 &mdash; Crew <span class="rule"></span> 07 members</p>
@@ -139,9 +174,33 @@
   </div>
 </section>
 
+{{ with .Site.Data.sponsors }}
+<section id="sponsors" class="section section--raised">
+  <div class="container">
+    <p class="eyebrow">03 &mdash; Sponsors <span class="rule"></span> {{ printf "%02d" (len .) }} organizations</p>
+    <div class="wall-head">
+      <h2 class="section-title">Fueled by</h2>
+      <div class="hero-buttons">
+        <a class="btn btn--primary" href="/sponsor/">Sponsor us</a>
+        <a class="btn btn--secondary" href="/sponsors/">All sponsors</a>
+      </div>
+    </div>
+    <div class="logo-wall">
+      {{ $all := . }}
+      {{ range slice "universe" "galaxy" "star" "planet" "meteor" }}
+        {{ range where $all "tier" . }}
+        {{ if .url }}<a class="logo-wall__cell" href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}"><img src="/sponsors/{{ .logo }}" alt="{{ .name }} logo" loading="lazy"></a>
+        {{ else }}<span class="logo-wall__cell"><img src="/sponsors/{{ .logo }}" alt="{{ .name }} logo" loading="lazy"></span>{{ end }}
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
 <section id="news" class="section">
   <div class="container">
-    <p class="eyebrow">03 &mdash; Dispatch <span class="rule"></span></p>
+    <p class="eyebrow">04 &mdash; Dispatch <span class="rule"></span></p>
     <h2 class="section-title">Latest news</h2>
     {{ $posts := first 3 (where .Site.RegularPages "Section" "posts") }}
     {{ if $posts }}
@@ -166,9 +225,9 @@
   </div>
 </section>
 
-<section id="contact" class="section">
+<section id="contact" class="section section--raised">
   <div class="container">
-    <p class="eyebrow">04 &mdash; Contact <span class="rule"></span></p>
+    <p class="eyebrow">05 &mdash; Contact <span class="rule"></span></p>
     <div class="contact-grid">
       <div class="contact-info">
         <h2 class="section-title">Open a channel</h2>
