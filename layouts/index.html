@@ -153,22 +153,26 @@
   <div class="container">
     <p class="eyebrow">02 &mdash; Crew <span class="rule"></span> 07 members</p>
     <h2 class="section-title">Who is cooking</h2>
-    {{ $crew := slice
-      (dict "n" "AJ Streepy" "r" "Team Lead & Mechanical" "d" "2 yrs FTC · Auburn Riverside HS")
-      (dict "n" "Charlotte Wester" "r" "Mechanical Lead" "d" "2 yrs FTC · Auburn Riverside HS")
-      (dict "n" "Nathan Tran" "r" "Programming Lead & Outreach" "d" "2 yrs FTC · Auburn Riverside HS")
-      (dict "n" "Easton Dixon" "r" "Outreach Lead & Electrical" "d" "1 yr FTC · Auburn Riverside HS")
-      (dict "n" "Sterling Rosquita" "r" "Outreach" "d" "First season · Auburn Riverside HS")
-      (dict "n" "Christian Bautista" "r" "Programming & Outreach" "d" "1 yr FTC · Auburn Riverside HS")
-      (dict "n" "Emmett Riemer" "r" "Mechanical & Outreach" "d" "1 yr FTC · Bellarmine Prep HS") }}
+    <p class="section-subtitle">Select a crew member to open their file.</p>
     <div class="crew">
-      {{ range $i, $m := $crew }}
-      <div class="crew__row">
-        <span class="mono">{{ printf "%02d" (add $i 1) }}</span>
-        <h3 class="crew__name">{{ $m.n }}</h3>
-        <span class="crew__role">{{ $m.r }}</span>
-        <span class="crew__detail mono">{{ $m.d }}</span>
-      </div>
+      {{ range $i, $m := .Site.Data.crew }}
+      <details class="crew__row" name="crew">
+        <summary>
+          <span class="mono">{{ printf "%02d" (add $i 1) }}</span>
+          <h3 class="crew__name">{{ $m.name }}</h3>
+          <span class="crew__role">{{ $m.role }}</span>
+          <span class="crew__toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="crew__file">
+          {{ with $m.photo }}<img class="crew__photo" src="/crew/{{ . }}" alt="{{ $m.name }}" loading="lazy">{{ end }}
+          <dl class="crew__facts">
+            <div><dt class="mono">Focus</dt><dd>{{ range $j, $f := split $m.role " & " }}<span class="crew__tag">{{ $f }}</span>{{ end }}</dd></div>
+            <div><dt class="mono">Experience</dt><dd>{{ $m.experience }}</dd></div>
+            <div><dt class="mono">School</dt><dd>{{ $m.school }}</dd></div>
+          </dl>
+          {{ with $m.bio }}<p class="crew__bio">{{ . }}</p>{{ end }}
+        </div>
+      </details>
       {{ end }}
     </div>
   </div>

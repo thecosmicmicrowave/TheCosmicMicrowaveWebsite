@@ -1,0 +1,26 @@
+# Sponsor tier themes. `image` is a file under static/space/ (all NASA public domain).
+- id: universe
+  scale: "93 billion light-years"
+  image: universe.webp
+  credit: "Hubble eXtreme Deep Field"
+  line: "Every point of light here is a galaxy."
+- id: galaxy
+  scale: "100,000 light-years"
+  image: galaxy.webp
+  credit: "Whirlpool Galaxy, Hubble"
+  line: "Hundreds of billions of stars, turning together."
+- id: star
+  scale: "1.4 million km"
+  image: star.webp
+  credit: "The Sun, Solar Dynamics Observatory"
+  line: "One star, close enough to power everything we build."
+- id: planet
+  scale: "120,000 km"
+  image: saturn.webp
+  credit: "Saturn, Cassini"
+  line: "A world of its own, rings and all."
+- id: meteor
+  scale: "Under 1 m"
+  image: meteor.webp
+  credit: "Perseid meteor, 2021"
+  line: "Small, fast, and impossible to miss."

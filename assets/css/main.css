@@ -558,23 +558,43 @@ button { font: inherit; cursor: pointer; }
 .log__result b { color: var(--red); font-weight: 500; }
 
 /* ============================================================
-   Crew
+   Crew — rows that open into a short file
    ============================================================ */
 .crew { border-top: 1px solid var(--line-strong); }
-.crew__row {
+.crew__row { border-bottom: 1px solid var(--line); }
+.crew__row summary {
   display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1.2fr) minmax(0, 1.2fr) minmax(0, 1.4fr);
+  grid-template-columns: 2.5rem minmax(0, 1.2fr) minmax(0, 1.4fr) auto;
   gap: var(--space-4);
   align-items: baseline;
   padding-block: var(--space-4);
-  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  list-style: none;
   transition: padding-left var(--dur) var(--ease);
 }
-.crew__row:hover { padding-left: var(--space-3); }
-.crew__row:hover .crew__name { color: var(--violet-ink); }
+.crew__row summary::-webkit-details-marker { display: none; }
+.crew__row summary:hover, .crew__row[open] summary { padding-left: var(--space-3); }
+.crew__row summary:hover .crew__name, .crew__row[open] .crew__name { color: var(--violet-ink); }
 .crew__name { font-family: var(--font-display); font-weight: 500; font-size: var(--text-lg); text-transform: uppercase; letter-spacing: 0.02em; transition: color var(--dur) var(--ease); }
-.crew__role { color: var(--ink); font-size: var(--text-sm); }
-.crew__detail { text-align: right; }
+.crew__role { color: var(--ink-2); font-size: var(--text-sm); }
+.crew__toggle { position: relative; width: 14px; height: 14px; align-self: center; }
+.crew__toggle::before, .crew__toggle::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1.5px; background: var(--red); transition: transform var(--dur) var(--ease); }
+.crew__toggle::after { transform: rotate(90deg); }
+.crew__row[open] .crew__toggle::after { transform: rotate(0deg); }
+.crew__file {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin: 0 0 var(--space-5) calc(2.5rem + var(--space-4));
+  padding: var(--space-5);
+  background: var(--bg-raised);
+  border-left: 1.5px solid var(--violet-ink);
+}
+.crew__photo { width: 120px; height: 120px; object-fit: cover; }
+.crew__facts { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-8); flex: 1 1 320px; }
+.crew__facts dt { margin-bottom: var(--space-2); }
+.crew__tag { display: inline-block; padding: 2px var(--space-2); margin: 0 var(--space-2) var(--space-1) 0; border: 1px solid var(--line-strong); font-size: var(--text-sm); }
+.crew__bio { flex: 1 1 100%; color: var(--ink-2); max-width: 68ch; }
 
 /* ============================================================
    News
@@ -665,6 +685,8 @@ button { font: inherit; cursor: pointer; }
   border-bottom: 1px solid var(--line);
 }
 .tier .btn { width: 100%; }
+.tier__thumb { width: 72px; height: 72px; object-fit: cover; margin-bottom: var(--space-3); background: #000; }
+.tier--featured .tier__thumb { outline: 2px solid var(--bg); }
 .tier__name { font-family: var(--font-display); font-weight: 500; font-size: var(--text-xl); text-transform: uppercase; }
 .tier__range { display: block; margin-top: var(--space-2); color: var(--red); }
 .tier__scale { display: block; margin-top: var(--space-1); }
@@ -706,7 +728,52 @@ button { font: inherit; cursor: pointer; }
    Sponsor wall — tiers at astronomical scale
    ============================================================ */
 .sponsor-wall { display: flex; flex-direction: column; gap: var(--space-9); }
-.sponsor-tier__title { font-family: var(--font-mono); font-size: inherit; font-weight: 500; letter-spacing: inherit; color: var(--ink); }
+/* each tier opens on a real photo of the thing it is named after */
+.tier-banner { position: relative; overflow: hidden; display: flex; align-items: flex-end; min-height: 300px; margin-bottom: var(--space-4); border: 1px solid var(--line); background: #000; }
+.tier-banner__img { position: absolute; max-width: none; }
+.tier-banner__text { position: relative; z-index: 1; padding: var(--space-6); }
+.tier-banner__title { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-block: var(--space-2); }
+.tier-banner__line { color: rgba(243, 239, 228, 0.82); max-width: 34ch; }
+.tier-banner__credit { position: absolute; z-index: 1; right: var(--space-4); bottom: var(--space-4); font-size: 0.625rem; color: rgba(243, 239, 228, 0.6); }
+.tier-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.35) 55%, transparent 100%); }
+
+/* Universe: the deep field fills everything, largest type */
+.sponsor-tier--universe .tier-banner { min-height: 460px; }
+.sponsor-tier--universe .tier-banner__img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sponsor-tier--universe .tier-banner__title { font-size: clamp(3.25rem, 10vw, 8rem); }
+.sponsor-tier--universe .tier-banner .mono { color: var(--violet-ink); }
+
+/* Galaxy: the Whirlpool, slowly turning */
+.sponsor-tier--galaxy .tier-banner { min-height: 380px; }
+.sponsor-tier--galaxy .tier-banner__img { top: 50%; right: -6%; width: min(62%, 640px); aspect-ratio: 1; margin-top: calc(min(62%, 640px) / -2); object-fit: cover; -webkit-mask-image: radial-gradient(circle, #000 42%, transparent 70%); mask-image: radial-gradient(circle, #000 42%, transparent 70%); }
+.sponsor-tier--galaxy .tier-banner__title { font-size: clamp(2.75rem, 7.5vw, 6rem); }
+.sponsor-tier--galaxy .tier-banner .mono { color: var(--violet-ink); }
+.sponsor-tier--galaxy .tier-banner::after { background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, transparent 60%); }
+@media (prefers-reduced-motion: no-preference) {
+  .sponsor-tier--galaxy .tier-banner__img { animation: galaxy-turn 360s linear infinite; }
+}
+@keyframes galaxy-turn { to { transform: rotate(-360deg); } }
+
+/* Star: the Sun rising out of the corner, red accents */
+.sponsor-tier--star .tier-banner { min-height: 320px; }
+.sponsor-tier--star .tier-banner__img { top: -55%; right: -8%; width: min(58%, 560px); aspect-ratio: 1; object-fit: cover; }
+.sponsor-tier--star .tier-banner .mono, .sponsor-tier--star .tier-banner__title { color: var(--red); }
+.sponsor-tier--star .tier-banner__credit { color: rgba(243, 239, 228, 0.6) !important; }
+.sponsor-tier--star .tier-banner::after { background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, transparent 55%); }
+.sponsor-tier--star .sponsor-card { border-color: rgba(255, 59, 48, 0.35); }
+
+/* Planet: Saturn, level and calm */
+.sponsor-tier--planet .tier-banner { min-height: 260px; }
+.sponsor-tier--planet .tier-banner__img { top: 50%; right: -4%; width: min(70%, 720px); height: auto; transform: translateY(-50%); }
+.sponsor-tier--planet .tier-banner__title { font-size: clamp(2.25rem, 5vw, 3.75rem); }
+.sponsor-tier--planet .tier-banner::after { background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, transparent 50%); }
+
+/* Meteor: a thin strip of night sky with one streak */
+.sponsor-tier--meteor .tier-banner { min-height: 170px; }
+.sponsor-tier--meteor .tier-banner__img { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+.sponsor-tier--meteor .tier-banner__title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
+.sponsor-tier--meteor .tier-banner__text { padding: var(--space-5); }
+.sponsor-tier--meteor .tier-banner__line { display: none; }
 .sponsor-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .sponsor-tier--universe .sponsor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .sponsor-tier--galaxy .sponsor-grid   { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -802,8 +869,9 @@ a.sponsor-card:hover .sponsor-card__visit { color: var(--red); }
   .readout__item { padding-left: 0; border-left: none; border-top: 1px solid var(--line); }
   .readout__item:nth-child(-n+2) { border-top: none; }
   .readout__item:nth-child(even) { padding-left: var(--space-5); border-left: 1px solid var(--line); }
-  .crew__row { grid-template-columns: 2.5rem minmax(0, 1fr); row-gap: var(--space-1); }
-  .crew__role, .crew__detail { grid-column: 2; text-align: left; }
+  .crew__row summary { grid-template-columns: 2.5rem minmax(0, 1fr) auto; row-gap: var(--space-1); }
+  .crew__role { grid-column: 2; grid-row: 2; }
+  .crew__file { margin-left: 0; }
   .news-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
   .tier, .inkind-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
   .tier .btn { width: auto; justify-self: start; }
@@ -814,6 +882,10 @@ a.sponsor-card:hover .sponsor-card__visit { color: var(--red); }
   .closing > div + div { border-left: none; border-top: 1px solid var(--line); }
   .sponsor-tier .sponsor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sponsor-packet__viewer { height: 70vh; min-height: 420px; }
+  .sponsor-tier--universe .tier-banner { min-height: 340px; }
+  .sponsor-tier--galaxy .tier-banner__img { width: 90%; margin-top: -45%; right: -35%; }
+  .sponsor-tier--star .tier-banner__img { width: 80%; right: -30%; top: -30%; }
+  .tier-banner__credit { display: none; }
 }
 @media (max-width: 560px) {
   .container { padding-inline: var(--space-5); }

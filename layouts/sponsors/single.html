@@ -17,19 +17,21 @@
 <section class="section" id="sponsors">
   <div class="container">
     {{ $sponsors := .Site.Data.sponsors }}
-    {{/* tier names are astronomical objects, so each is labelled with its real size */}}
-    {{ $scale := dict "universe" "93 billion light-years" "galaxy" "100,000 light-years" "star" "1.4 million km" "planet" "12,742 km" "meteor" "Under 1 m" }}
     {{ if $sponsors }}
     <div class="sponsor-wall">
-      {{ range slice "universe" "galaxy" "star" "planet" "meteor" }}
-        {{ $tier := . }}
+      {{ range .Site.Data.tiers }}
+        {{ $tier := .id }}
         {{ $tierSponsors := where $sponsors "tier" $tier }}
         {{ if $tierSponsors }}
         <div class="sponsor-tier sponsor-tier--{{ $tier }}" id="{{ $tier }}">
-          <div class="eyebrow">
-            <h2 class="sponsor-tier__title">{{ title $tier }}</h2>
-            <span class="rule"></span>
-            <span>Scale: {{ index $scale $tier }}</span>
+          <div class="tier-banner">
+            <img class="tier-banner__img" src="/space/{{ .image }}" alt="" loading="lazy" aria-hidden="true">
+            <div class="tier-banner__text">
+              <p class="mono">Scale: {{ .scale }}</p>
+              <h2 class="tier-banner__title">{{ title $tier }}</h2>
+              <p class="tier-banner__line">{{ .line }}</p>
+            </div>
+            <p class="tier-banner__credit mono">{{ .credit }}</p>
           </div>
           <div class="sponsor-grid">
             {{ range $tierSponsors }}
