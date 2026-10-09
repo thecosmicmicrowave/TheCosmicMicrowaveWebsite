@@ -11,7 +11,7 @@ The team name is the theme. Two halves:
 
 ## Rules
 
-1. **One accent, used as a surface.** `--red` (#ff3b30) is the only color. It appears as text and lines, and also as solid blocks (`.block-red`: red fill, dark ink, faint grid) for the ticker, the zero-fees statement, the featured Star tier, and closing CTAs. Roughly one red block per screen. No violet, no gradients, no shadows, no glows.
+1. **Two team colors, each with a job.** Red `--red` (#ff3b30) is hot: actions, numbers, the ticker, the featured tier. Violet `--violet` (#6d3ff2, text variant `--violet-ink` #a98cff) is cold: the robot's own color, the hero plate, hover and focus states, right-hand eyebrow metadata, and secondary surfaces. The sky map shows both, as real CMB maps do (hot and cold spots). Both appear as solid blocks (`.block-red`, `.block-violet`), usually paired side by side. Never blend them into a gradient. No shadows, no glows.
 2. **Square corners.** No border-radius on UI. The only circle is the tinted plate behind the hero robot.
 3. **Hairlines, not boxes.** Lists are rows divided by `--line`. A bordered box is for a real container (sponsor card, featured tier, closing CTA).
 4. **Three type voices.**

@@ -9,10 +9,12 @@
 :root {
   /* ---- color: near-black, warm paper white, one red ---- */
   --bg:        #08080b;
-  --bg-raised: #0f0f14;
+  --bg-raised: #100e1b;
   --ink:       #f3efe4;
   --ink-2:     #a5a29b;
-  --red:       #ff3b30;
+  --red:       #ff3b30;   /* hot: actions, numbers */
+  --violet:    #6d3ff2;   /* cold: surfaces, the robot's own color */
+  --violet-ink:#a98cff;   /* violet as text on dark */
   --line:        rgba(243, 239, 228, 0.14);
   --line-strong: rgba(243, 239, 228, 0.32);
 
@@ -82,7 +84,8 @@ a:hover { color: var(--red); }
 img, svg { display: block; max-width: 100%; }
 button { font: inherit; cursor: pointer; }
 
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--violet-ink); outline-offset: 3px; }
+::selection { background: var(--violet); color: var(--ink); }
 
 .visually-hidden {
   position: absolute;
@@ -140,6 +143,18 @@ button { font: inherit; cursor: pointer; }
   background-size: 56px 56px;
   color: var(--bg);
 }
+.block-violet {
+  background-color: var(--violet);
+  background-image:
+    linear-gradient(rgba(243, 239, 228, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243, 239, 228, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px;
+  color: var(--ink);
+}
+.block-violet .mono, .block-violet p { color: rgba(243, 239, 228, 0.88); }
+.block-violet .btn--secondary { border-color: var(--ink); color: var(--ink); }
+.block-violet .btn--secondary:hover { background: var(--ink); color: var(--violet); border-color: var(--ink); }
+.block-violet :focus-visible { outline-color: var(--ink); }
 .block-red .mono, .block-red p { color: rgba(8, 8, 11, 0.8); }
 .block-red a:not(.btn) { color: var(--bg); text-decoration: underline; }
 .block-red .btn--primary { background: var(--bg); color: var(--ink); }
@@ -168,6 +183,7 @@ button { font: inherit; cursor: pointer; }
   transform: rotate(45deg);
 }
 .eyebrow .rule { flex: 1; height: 1px; background: var(--line); }
+.eyebrow .rule ~ * , .eyebrow .rule + span { color: var(--violet-ink); }
 .eyebrow--plain::before { display: none; }
 
 .mono {
@@ -226,7 +242,7 @@ button { font: inherit; cursor: pointer; }
 .btn--primary { background: var(--red); color: var(--bg); }
 .btn--primary:hover { background: var(--ink); color: var(--bg); }
 .btn--secondary { background: transparent; color: var(--ink); border-color: var(--line-strong); }
-.btn--secondary:hover { color: var(--red); border-color: var(--red); }
+.btn--secondary:hover { color: var(--violet-ink); border-color: var(--violet-ink); }
 .btn[disabled] { opacity: 0.45; cursor: not-allowed; }
 
 /* ============================================================
@@ -281,7 +297,7 @@ button { font: inherit; cursor: pointer; }
   color: var(--ink-2);
   border-bottom: 1px solid transparent;
 }
-.nav__link:hover { color: var(--ink); border-bottom-color: var(--red); }
+.nav__link:hover { color: var(--ink); border-bottom-color: var(--violet-ink); }
 
 .nav__cta { min-height: 38px; padding-inline: var(--space-4); font-size: var(--text-xs); }
 .nav__cta::after { content: '+'; }
@@ -338,9 +354,9 @@ button { font: inherit; cursor: pointer; }
 .site-footer__inner { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: var(--space-7); }
 .site-footer__brand p { color: var(--ink-2); max-width: 30ch; margin-top: var(--space-4); }
 .site-footer__col { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
-.site-footer__col .mono { color: var(--red); margin-bottom: var(--space-2); }
+.site-footer__col .mono { color: var(--violet-ink); margin-bottom: var(--space-2); }
 .site-footer__col a { color: var(--ink); }
-.site-footer__col a:hover { color: var(--red); }
+.site-footer__col a:hover { color: var(--violet-ink); }
 .site-footer__giant {
   font-family: var(--font-display);
   font-weight: 500;
@@ -402,7 +418,7 @@ button { font: inherit; cursor: pointer; }
    CMB sky map — the signature figure
    ============================================================ */
 .cmb { width: 100%; height: auto; overflow: visible; }
-.cmb__ring { fill: none; stroke: var(--red); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.cmb__ring { fill: none; stroke: var(--violet-ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
 .cmb__axis { stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 2 6; vector-effect: non-scaling-stroke; }
 
 /* ============================================================
@@ -447,8 +463,8 @@ button { font: inherit; cursor: pointer; }
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: rgba(255, 59, 48, 0.2);
-  border: 1.5px solid var(--red);
+  background: rgba(109, 63, 242, 0.3);
+  border: 1.5px solid var(--violet-ink);
   backdrop-filter: blur(2px);
   z-index: 0;
 }
@@ -500,14 +516,14 @@ button { font: inherit; cursor: pointer; }
 .split__block { padding-right: var(--space-8); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-5); }
 .split__block h2 { font-family: var(--font-body); font-weight: 600; font-size: var(--text-2xl); line-height: 1.1; letter-spacing: -0.02em; text-transform: none; color: var(--bg); }
 .split__block p:not(.mono) { font-size: var(--text-lg); max-width: 38ch; }
-.split__panel { padding-left: var(--space-8); background: var(--bg-raised); }
-.split__total { font-family: var(--font-display); font-weight: 500; font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1; color: var(--red); margin-block: var(--space-3) var(--space-6); }
+.split__panel { padding-left: var(--space-8); }
+.split__total { font-family: var(--font-display); font-weight: 500; font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1; color: var(--ink) !important; margin-block: var(--space-3) var(--space-6); }
 .bars { list-style: none; display: grid; gap: var(--space-5); }
 .bars li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-2) var(--space-4); align-items: baseline; }
 .bars__label { font-weight: 500; }
 .bars__amount { color: var(--ink); }
-.bars__track { grid-column: 1 / -1; height: 10px; background: var(--line); }
-.bars__fill { display: block; height: 100%; background: var(--red); }
+.bars__track { grid-column: 1 / -1; height: 10px; background: rgba(8, 8, 11, 0.35); }
+.bars__fill { display: block; height: 100%; background: var(--ink); }
 
 /* ============================================================
    Logo wall — home page sponsor mosaic
@@ -570,7 +586,7 @@ button { font: inherit; cursor: pointer; }
   transition: padding-left var(--dur) var(--ease);
 }
 .crew__row:hover { padding-left: var(--space-3); }
-.crew__row:hover .crew__name { color: var(--red); }
+.crew__row:hover .crew__name { color: var(--violet-ink); }
 .crew__name { font-family: var(--font-display); font-weight: 500; font-size: var(--text-lg); text-transform: uppercase; letter-spacing: 0.02em; transition: color var(--dur) var(--ease); }
 .crew__role { color: var(--ink); font-size: var(--text-sm); }
 .crew__detail { text-align: right; }
@@ -667,6 +683,7 @@ button { font: inherit; cursor: pointer; }
 .tier__name { font-family: var(--font-display); font-weight: 500; font-size: var(--text-xl); text-transform: uppercase; }
 .tier__range { display: block; margin-top: var(--space-2); color: var(--red); }
 .tier__scale { display: block; margin-top: var(--space-1); }
+.tier:not(.tier--featured):hover .tier__name { color: var(--violet-ink); }
 .tier__benefits { list-style: none; color: var(--ink-2); }
 .tier__benefits li { padding-block: var(--space-1); padding-left: var(--space-5); position: relative; }
 .tier__benefits li::before { content: ''; position: absolute; left: 0; top: 0.95em; width: 10px; height: 1px; background: var(--red); }
@@ -692,7 +709,10 @@ button { font: inherit; cursor: pointer; }
 .closing > div { padding: var(--space-7); }
 .closing > div + div { border-left: 1px solid var(--line); }
 .closing h2 { font-size: var(--text-xl); margin-bottom: var(--space-3); }
+.closing > div + div.block-violet { border-left: none; }
 .closing .block-red h2 { color: var(--bg); }
+.closing .block-red p { color: rgba(8, 8, 11, 0.8); }
+.closing .block-violet p { color: rgba(243, 239, 228, 0.88); }
 .closing p { color: var(--ink-2); margin-bottom: var(--space-5); max-width: 40ch; }
 
 .donate-alt .section-subtitle { margin-bottom: var(--space-5); }
@@ -715,7 +735,7 @@ button { font: inherit; cursor: pointer; }
   color: var(--ink);
   transition: border-color var(--dur) var(--ease);
 }
-a.sponsor-card:hover { border-color: var(--red); color: var(--ink); }
+a.sponsor-card:hover { border-color: var(--violet-ink); color: var(--ink); }
 .sponsor-card__plate {
   position: relative;
   display: block;
