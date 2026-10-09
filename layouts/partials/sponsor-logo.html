@@ -1,0 +1,8 @@
+{{/* Monochrome logo that crossfades to full color on hover/focus.
+     Most logos are dark-on-white, so the mono layer is inverted and screened
+     onto the dark page. Set `mono: light` in sponsors.yaml for a logo that is
+     already light on a transparent background. */}}
+<span class="logo-fade{{ if eq .mono "light" }} logo-fade--light{{ end }}">
+  <img class="lf-mono" src="/sponsors/{{ .logo }}" alt="{{ .name }} logo" loading="lazy">
+  <span class="lf-color" aria-hidden="true"><img src="/sponsors/{{ .logo }}" alt="" loading="lazy"></span>
+</span>

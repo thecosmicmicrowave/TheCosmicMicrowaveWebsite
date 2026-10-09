@@ -4,14 +4,18 @@ Reset 2026-10-08. Replaces the earlier violet + red "Night-Shift Galley" system,
 
 ## Concept
 
-The team name is the theme. Two halves:
+Plain space, drawn flat in the two team colors. No textures, glows, nebulae, or gradients.
 
-- **Cosmic microwave background.** A procedural CMB sky map (`layouts/partials/cmb.html`, SVG noise posterised into a red oval) fills the home hero behind the robot and rises off the edge of the sponsor page heads and 404. A faint film grain (`.grain`) covers every page. No starfields, nebulae, or glows.
-- **Microwave.** Numbers read like an appliance display: two-digit, red, tabular (`.readout`). The footer ends on `00:00`. Keep kitchen jokes to one per page.
+- **Stars** (`partials/stars.html`): crisp dots and a few four-point sparks, positions hashed so they are stable.
+- **Orbits** around the hero robot, which sits on a solid violet disc like a planet.
+- **Ringed planet** (`partials/planet.html`) rising off the edge of sponsor page heads and the 404.
+- Tier names (Universe to Meteor) carry the theme on the sponsor pages.
+
+The earlier cosmic-microwave-background texture and microwave jokes were tried and rejected on 2026-10-08.
 
 ## Rules
 
-1. **Two team colors, each with a job.** Red `--red` (#ff3b30) is hot: actions, numbers, the ticker, the featured tier. Violet `--violet` (#6d3ff2, text variant `--violet-ink` #a98cff) is cold: the robot's own color, the hero plate, hover and focus states, right-hand eyebrow metadata, and secondary surfaces. The sky map shows both, as real CMB maps do (hot and cold spots). Both appear as solid blocks (`.block-red`, `.block-violet`), usually paired side by side. Never blend them into a gradient. No shadows, no glows.
+1. **Two team colors, each with a job.** Red `--red` (#ff3b30) is hot: actions, numbers, the ticker, the featured tier. Violet `--violet` (#6d3ff2, text variant `--violet-ink` #a98cff) is cold: the robot's own color, the hero plate, hover and focus states, right-hand eyebrow metadata, and secondary surfaces. Both appear as solid blocks (`.block-red`, `.block-violet`), usually paired side by side. Never blend them into a gradient. No shadows, no glows.
 2. **Square corners.** No border-radius on UI. The only circle is the tinted plate behind the hero robot.
 3. **Hairlines, not boxes.** Lists are rows divided by `--line`. A bordered box is for a real container (sponsor card, featured tier, closing CTA).
 4. **Three type voices.**
@@ -31,12 +35,12 @@ Defined at the top of `assets/css/main.css`: colors, 4/8px spacing scale (`--spa
 
 - **Buttons** (`.btn`): 48px square block, mono caps. Primary is red with dark text; secondary is a hairline outline.
 - **Ticker** (`.ticker`): red marquee of the motto under the hero; static under reduced motion.
-- **Split** (`.split`): red statement block beside the season budget bars (figures from the sponsor packet).
-- **Logo wall** (`.logo-wall`): home-page mosaic of every sponsor logo on white cells.
+- **Split** (`.split`): red block with the season total beside violet budget bars. Figures come from the team's budget sheet ($12,200 as of 2026-10-08).
+- **Sponsor logos** (`partials/sponsor-logo.html`): monochrome at rest, crossfade to full color on a white plate on hover or focus. Used on the home logo wall and the sponsors page.
 - **Footer**: four columns plus the wordmark at full viewport width in red.
 - **Readout** (`.readout`): four-cell hairline grid of big red digits with mono labels.
 - **Log / crew tables** (`.log`, `.crew`): numbered hairline rows.
-- **Sponsor wall** (`.sponsor-tier`, `.sponsor-card`): one section per tier. Eyebrow shows the tier name and the real size of that object (galaxy: 100,000 light-years). Card columns grow as tiers shrink (2, 3, 4, 5, 6). Every logo sits on a white plate so mixed logo backgrounds look uniform.
+- **Sponsor wall** (`.sponsor-tier`, `.sponsor-card`): one section per tier. Eyebrow shows the tier name and the real size of that object (galaxy: 100,000 light-years). Card columns grow as tiers shrink (2, 3, 4, 5, 6).
 - **Tier table** (`.tiers`, `.tier`): name and price, benefit list, CTA. Star stays flagged "Most popular" in a red-bordered row; that is a deliberate pricing nudge.
 - **Forms**: underline-only fields, mono labels.
 

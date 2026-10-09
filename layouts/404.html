@@ -1,10 +1,11 @@
 {{ define "title" }}Page Not Found | FTC 35817{{ end }}
 {{ define "main" }}
-<section class="section error-page page-head--cmb">
-  {{ partial "cmb.html" (dict "id" "cmb-404") }}
+<section class="section error-page page-head--space">
+  {{ partial "stars.html" (dict "seed" "404") }}
+  {{ partial "planet.html" . }}
   <div class="container error-page__inner">
     {{ partial "icon.html" (dict "name" "rocket" "class" "error-page__icon" "size" 64) }}
-    <p class="eyebrow">Error <span class="rule"></span> 2.725 K</p>
+    <p class="eyebrow">Error <span class="rule"></span> Signal lost</p>
     <p class="error-page__code">404</p>
     <h1 class="error-page__title">Lost in space</h1>
     <p class="error-page__text">

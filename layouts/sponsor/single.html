@@ -1,6 +1,7 @@
 {{ define "main" }}
-<section class="section page-head page-head--cmb">
-  {{ partial "cmb.html" (dict "id" "cmb-head") }}
+<section class="section page-head page-head--space">
+  {{ partial "stars.html" (dict "seed" "sponsor") }}
+  {{ partial "planet.html" . }}
   <div class="container">
     <p class="eyebrow">Sponsorship program <span class="rule"></span> 501(c)(3) &middot; EIN 42-4248249</p>
     <h1 class="page-head__title">Put your brand <em>in orbit.</em></h1>
@@ -23,7 +24,7 @@
   <div class="container">
     <p class="eyebrow">01 &mdash; Why sponsor us <span class="rule"></span></p>
     <div class="about-grid">
-      <h2 class="section-title">Zero membership fees. That is where you come in.</h2>
+      <h2 class="section-title">Why sponsor us</h2>
       <div class="why-panel">
         <p>
           We are a 501(c)(3) nonprofit (EIN 42-4248249), and all sponsorships are tax-deductible.

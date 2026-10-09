@@ -1,6 +1,6 @@
 {{ define "main" }}
 <section class="hero" id="home">
-  {{ partial "cmb.html" (dict "id" "cmb-hero") }}
+  {{ partial "stars.html" (dict "seed" "home") }}
   <div class="container hero-grid">
     <div class="hero-content">
       <p class="eyebrow">FTC Team 35817 <span class="rule"></span> Lake Tapps, Washington</p>
@@ -19,6 +19,14 @@
       </div>
     </div>
     <div class="hero-stage">
+      <svg class="orbits" viewBox="-500 -500 1000 1000" aria-hidden="true" focusable="false">
+        <g transform="rotate(-18)">
+          <ellipse class="orbits__ring" rx="480" ry="150"/>
+          <ellipse class="orbits__ring orbits__ring--dash" rx="395" ry="112"/>
+          <circle class="orbits__planet" cx="416" cy="75" r="17"/>
+          <circle class="orbits__moon" cx="-342" cy="-56" r="9"/>
+        </g>
+      </svg>
       <model-viewer
         id="hero-robot"
         class="hero-robot"
@@ -45,8 +53,8 @@
         <img src="/robot-poster.webp" alt="FTC Team 35817's competition robot" width="360" height="360">
       </noscript>
       <p class="hero-stage__caption mono" aria-hidden="true">
-        <span>Fig. 01 &mdash; Robot over the microwave background</span>
-        <span><b>2.725 K</b> &middot; Red hot, violet cold &middot; Drag to rotate</span>
+        <span>Fig. 01 &mdash; Competition robot</span>
+        <span><b>Live 3D</b> &middot; Drag to rotate</span>
       </p>
     </div>
   </div>
@@ -122,27 +130,27 @@
   </div>
 </section>
 
-<section class="split" aria-labelledby="fees-title">
+<section class="split" aria-labelledby="budget-title">
   <div class="split__block block-red">
-    <p class="mono">Why sponsors matter</p>
-    <h2 id="fees-title">We charge zero membership fees, so any motivated student can join.</h2>
-    <p>Sponsors cover robot parts, event travel, tools, and registration fees.</p>
+    <p class="mono">Season budget</p>
+    <h2 id="budget-title" class="split__total">$12,200</h2>
+    <p>What one season costs us, line by line. Sponsors and donors fund every dollar of it.</p>
     <a class="btn btn--primary" href="/sponsor/">Support us</a>
   </div>
   <div class="split__panel block-violet">
-    <p class="mono">Season budget</p>
-    <p class="split__total">$10,800</p>
+    <p class="mono">Where it goes</p>
     {{ $budget := slice
-      (dict "l" "Robot electronics & supplies" "a" 4300)
+      (dict "l" "Robot electronics & supplies" "a" 5000)
       (dict "l" "Travel funds" "a" 4300)
-      (dict "l" "Registration & 501(c)(3) fees" "a" 1600)
+      (dict "l" "Competition registration & 501(c)(3) fees" "a" 1600)
+      (dict "l" "Outreach events" "a" 700)
       (dict "l" "Game elements & field setup" "a" 600) }}
     <ul class="bars">
       {{ range $budget }}
       <li>
         <span class="bars__label">{{ .l }}</span>
         <span class="bars__amount mono">${{ lang.FormatNumber 0 .a }}</span>
-        <span class="bars__track"><span class="bars__fill" style="width: {{ div (mul .a 100) 4300 }}%"></span></span>
+        <span class="bars__track"><span class="bars__fill" style="width: {{ div (mul .a 100) 5000 }}%"></span></span>
       </li>
       {{ end }}
     </ul>
@@ -189,8 +197,8 @@
       {{ $all := . }}
       {{ range slice "universe" "galaxy" "star" "planet" "meteor" }}
         {{ range where $all "tier" . }}
-        {{ if .url }}<a class="logo-wall__cell" href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}"><img src="/sponsors/{{ .logo }}" alt="{{ .name }} logo" loading="lazy"></a>
-        {{ else }}<span class="logo-wall__cell"><img src="/sponsors/{{ .logo }}" alt="{{ .name }} logo" loading="lazy"></span>{{ end }}
+        {{ if .url }}<a class="logo-wall__cell" href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}">{{ partial "sponsor-logo.html" . }}</a>
+        {{ else }}<span class="logo-wall__cell">{{ partial "sponsor-logo.html" . }}</span>{{ end }}
         {{ end }}
       {{ end }}
     </div>

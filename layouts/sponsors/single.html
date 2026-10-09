@@ -1,9 +1,10 @@
 {{ define "main" }}
-<section class="section page-head page-head--cmb">
-  {{ partial "cmb.html" (dict "id" "cmb-head") }}
+<section class="section page-head page-head--space">
+  {{ partial "stars.html" (dict "seed" "sponsors") }}
+  {{ partial "planet.html" . }}
   <div class="container">
     <p class="eyebrow">Sponsors <span class="rule"></span> FTC 35817</p>
-    <h1 class="page-head__title">Zero fees. <em>Fully fueled.</em></h1>
+    <h1 class="page-head__title">Fueled by <em>{{ len .Site.Data.sponsors }} sponsors.</em></h1>
     <p class="page-head__lead">
       We charge no membership fees, so we rely on sponsors like these to cover robot parts, event
       travel, tools, and registration. Thank you for powering the team.
@@ -35,7 +36,7 @@
             {{ range $tierSponsors }}
             {{ if .url }}
             <a class="sponsor-card" href="{{ .url }}" target="_blank" rel="noopener noreferrer">
-              <span class="sponsor-card__plate"><img src="/sponsors/{{ .logo }}" alt="{{ .name }} logo" loading="lazy"></span>
+              <span class="sponsor-card__plate">{{ partial "sponsor-logo.html" . }}</span>
               <span class="sponsor-card__meta">
                 <span class="sponsor-card__name">{{ .name }}</span>
                 <span class="sponsor-card__visit text-link">Visit</span>
@@ -43,7 +44,7 @@
             </a>
             {{ else }}
             <div class="sponsor-card">
-              <span class="sponsor-card__plate"><img src="/sponsors/{{ .logo }}" alt="{{ .name }} logo" loading="lazy"></span>
+              <span class="sponsor-card__plate">{{ partial "sponsor-logo.html" . }}</span>
               <span class="sponsor-card__meta">
                 <span class="sponsor-card__name">{{ .name }}</span>
               </span>

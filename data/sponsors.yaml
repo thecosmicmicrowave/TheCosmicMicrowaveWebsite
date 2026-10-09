@@ -4,7 +4,9 @@
 #
 # tier must be one of: universe, galaxy, star, planet, meteor
 #   (matches the tiers on /sponsor/ — logo size scales with tier)
-# logo is a filename under static/sponsors/ (svg or png, transparent background)
+# logo is a filename under static/sponsors/ (svg or png)
+# mono: light  -> optional; only for a logo that is light-colored on a transparent
+#                 background (it then skips the invert used for dark-on-white logos)
 #
 # - name: "Acme Robotics Supply"
 #   tier: star
@@ -19,6 +21,7 @@
 - name: "Kids Care Too"
   tier: meteor
   logo: "kidscaretooMeteor.png"
+  mono: light
   url: "https://www.kidscaretoo.com/"
 
 - name: "QT Optometry"
@@ -34,6 +37,7 @@
 - name: "Streepy Septic Design"
   tier: galaxy
   logo: "StreepySepticGalaxy.png"
+  mono: light
   url: "https://streepysepticdesign.com"
 
 - name: "CT & Associates LLC"
