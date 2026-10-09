@@ -53,3 +53,11 @@
 - name: "NOBLE"
   tier: galaxy
   logo: "NobleGalaxy.png"
+
+- name: "Machine Repair & Design"
+  tier: galaxy
+  logo: "MachineRepairDesignGalaxy.png"
+
+- name: "Forthright Insurance Services"
+  tier: planet
+  logo: "ForthrightPlanet.png"
