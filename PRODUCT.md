@@ -36,7 +36,7 @@ Contact form submits to Formspree (`https://formspree.io/f/xzdnbjjr`). Donations
 ## Brand Commitments
 
 - Team name: "The Cosmic Microwave," FTC 35817. Motto: `"Cogitare est coquere" — To think is to cook.` (Latin pun on the team name.)
-- Visual direction reset 2026-10-08 at the user's request (old violet + red, pill/glass look read as generic and AI-made). References: seattlesolvers.com and theseusrobotics.org. Current system is documented in `DESIGN.md`: near-black background, warm off-white text, red (`#ff3b30`, hot/action) and violet (`#6d3ff2`, cold/secondary) as flat team colors, square corners, hairline rules, mono labels. The space theme is plain and flat: stars, orbits, a ringed planet (a microwave-background texture was tried and rejected).
+- Visual direction reset 2026-10-08 at the user's request (old violet + red, pill/glass look read as generic and AI-made). References: seattlesolvers.com and theseusrobotics.org. Current system is documented in `DESIGN.md`: near-black background, warm off-white text, red (`#ff3b30`, hot/action) and violet (`#6d3ff2`, cold/secondary) as flat team colors, square corners, hairline rules, mono labels. The space theme is carried by real NASA photography (Webb nebula, Cassini Saturn) under flat UI; drawn space shapes and a microwave-background texture were tried and rejected.
 - Fonts: Orbitron (weight 500, uppercase, headlines and readouts only), Inter (body), JetBrains Mono (labels, buttons, metadata).
 - No emoji anywhere in rendered output.
 - Logo assets (`/logo_circle_nobg.png`, `/logo_badge_nobg.png`, `/favicon-96x96.png`) are fixed and must not be modified.

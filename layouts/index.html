@@ -1,6 +1,6 @@
 {{ define "main" }}
 <section class="hero" id="home">
-  {{ partial "stars.html" (dict "seed" "home") }}
+  <img class="hero__bg" src="/space/nebula.webp" alt="" width="1920" height="1111" fetchpriority="high" aria-hidden="true">
   <div class="container hero-grid">
     <div class="hero-content">
       <p class="eyebrow">FTC Team 35817 <span class="rule"></span> Lake Tapps, Washington</p>
@@ -19,14 +19,6 @@
       </div>
     </div>
     <div class="hero-stage">
-      <svg class="orbits" viewBox="-500 -500 1000 1000" aria-hidden="true" focusable="false">
-        <g transform="rotate(-18)">
-          <ellipse class="orbits__ring" rx="480" ry="150"/>
-          <ellipse class="orbits__ring orbits__ring--dash" rx="395" ry="112"/>
-          <circle class="orbits__planet" cx="416" cy="75" r="17"/>
-          <circle class="orbits__moon" cx="-342" cy="-56" r="9"/>
-        </g>
-      </svg>
       <model-viewer
         id="hero-robot"
         class="hero-robot"
@@ -53,7 +45,7 @@
         <img src="/robot-poster.webp" alt="FTC Team 35817's competition robot" width="360" height="360">
       </noscript>
       <p class="hero-stage__caption mono" aria-hidden="true">
-        <span>Fig. 01 &mdash; Competition robot</span>
+        <span>Competition robot</span>
         <span><b>Live 3D</b> &middot; Drag to rotate</span>
       </p>
     </div>

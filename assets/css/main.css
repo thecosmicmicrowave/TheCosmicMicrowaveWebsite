@@ -357,6 +357,11 @@ button { font: inherit; cursor: pointer; }
   text-align: center;
   white-space: nowrap;
   color: var(--red);
+  background: url(/space/nebula.webp) center 72% / cover;
+  filter: brightness(1.7) saturate(1.15);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-top: var(--space-9);
   user-select: none;
 }
@@ -405,27 +410,6 @@ button { font: inherit; cursor: pointer; }
 }
 
 /* ============================================================
-   Space — flat stars, orbits, a ringed planet
-   ============================================================ */
-.stars { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-.stars circle { fill: var(--ink); opacity: 0.7; }
-.stars__spark.is-red { fill: var(--red); }
-.stars__spark.is-violet { fill: var(--violet-ink); }
-
-.orbits { position: absolute; top: 46%; left: 50%; width: 150%; max-width: none; transform: translate(-50%, -50%); z-index: 0; overflow: visible; pointer-events: none; }
-.orbits__ring { fill: none; stroke: var(--violet-ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-.orbits__ring--dash { stroke: var(--line-strong); stroke-dasharray: 3 7; }
-.orbits__planet { fill: var(--red); }
-.orbits__moon { fill: var(--ink); }
-
-.planet { overflow: visible; }
-.planet__body { fill: var(--violet); }
-.planet__shade { fill: rgba(8, 8, 11, 0.28); }
-.planet__ring { fill: none; stroke: var(--red); stroke-width: 5; vector-effect: non-scaling-stroke; }
-.planet__ring--inner { stroke: var(--ink); stroke-width: 1.5; }
-.planet__moon { fill: var(--ink); }
-
-/* ============================================================
    Hero
    ============================================================ */
 .hero {
@@ -436,30 +420,27 @@ button { font: inherit; cursor: pointer; }
   position: relative;
   overflow: hidden;
 }
+/* real sky: Webb's Carina Nebula, darkened on the left where the text sits */
+.hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 60% 60%; z-index: 0; }
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 8, 11, 0.75) 0%, transparent 22%, transparent 70%, var(--bg) 100%),
+    linear-gradient(90deg, rgba(8, 8, 11, 0.94) 0%, rgba(8, 8, 11, 0.72) 42%, rgba(8, 8, 11, 0.12) 78%);
+}
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: center; }
 .hero-content h1 { font-size: clamp(2.6rem, 6vw, 5rem); margin-bottom: var(--space-5); }
 .hero-tagline { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-4); margin-bottom: var(--space-5); }
 .hero-tagline .latin { font-family: var(--font-display); font-weight: 500; font-size: var(--text-lg); color: var(--red); text-transform: uppercase; letter-spacing: 0.04em; }
 .hero-tagline .translation { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
-.hero-desc { color: var(--ink-2); font-size: var(--text-lg); max-width: 44ch; margin-bottom: var(--space-6); }
+.hero-desc { color: rgba(243, 239, 228, 0.82); font-size: var(--text-lg); max-width: 44ch; margin-bottom: var(--space-6); }
 .hero-desc strong { color: var(--ink); font-weight: 500; }
 .hero-buttons { display: flex; gap: var(--space-3); flex-wrap: wrap; }
 
 .hero-stage { position: relative; display: flex; flex-direction: column; align-items: center; min-width: 0; }
-/* the plate the robot sits on */
-.hero-stage::before {
-  content: '';
-  position: absolute;
-  top: 46%;
-  left: 50%;
-  width: min(100%, 68vh);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: #25175f;
-  border: 1.5px solid var(--violet-ink);
-  z-index: 0;
-}
 .hero-robot {
   position: relative;
   z-index: 1;
@@ -652,9 +633,9 @@ button { font: inherit; cursor: pointer; }
 .page-head__title em { font-style: normal; color: var(--red); }
 .page-head__lead { color: var(--ink-2); font-size: var(--text-lg); max-width: 56ch; margin-top: var(--space-5); }
 .page-head + .section { padding-top: var(--space-7); }
-/* ringed planet rising off the right edge of a page head */
+/* Cassini's Saturn rising off the right edge; black sky drops out via screen blend */
 .page-head--space { overflow: hidden; }
-.page-head--space > .planet { position: absolute; top: 50%; right: -9%; width: min(52%, 640px); transform: translateY(-46%); z-index: 0; }
+.page-head__planet { position: absolute; top: 50%; right: -16%; width: min(78%, 1000px); max-width: none; height: auto; transform: translateY(-48%); mix-blend-mode: screen; z-index: 0; pointer-events: none; }
 
 .tier-jump { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin-top: var(--space-6); }
 .tier-jump a {
@@ -812,10 +793,10 @@ a.sponsor-card:hover .sponsor-card__visit { color: var(--red); }
 @media (max-width: 900px) {
   .section { padding-block: var(--space-9); }
   .hero { min-height: auto; padding-top: calc(var(--header-h) + var(--space-6)); }
+  .hero::after { background: linear-gradient(180deg, rgba(8, 8, 11, 0.92) 0%, rgba(8, 8, 11, 0.84) 52%, rgba(8, 8, 11, 0.15) 82%, var(--bg) 100%); }
   .hero-grid, .about-grid, .contact-grid, .donate-layout { grid-template-columns: minmax(0, 1fr); gap: var(--space-7); }
   .hero-stage { order: 2; }
-  .page-head--space > .planet { width: 90%; right: -52%; opacity: 0.6; }
-  .orbits { width: 135%; }
+  .page-head__planet { width: 150%; right: -85%; opacity: 0.7; }
   .hero-robot { height: min(420px, 90vw); }
   .readout__row { grid-template-columns: repeat(2, 1fr); }
   .readout__item { padding-left: 0; border-left: none; border-top: 1px solid var(--line); }

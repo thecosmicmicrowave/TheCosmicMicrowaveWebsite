@@ -4,14 +4,13 @@ Reset 2026-10-08. Replaces the earlier violet + red "Night-Shift Galley" system,
 
 ## Concept
 
-Plain space, drawn flat in the two team colors. No textures, glows, nebulae, or gradients.
+Real space photography, not drawn shapes. Flat drawn stars, orbits and planets were tried and rejected on 2026-10-08, as was a procedural microwave-background texture.
 
-- **Stars** (`partials/stars.html`): crisp dots and a few four-point sparks, positions hashed so they are stable.
-- **Orbits** around the hero robot, which sits on a solid violet disc like a planet.
-- **Ringed planet** (`partials/planet.html`) rising off the edge of sponsor page heads and the 404.
-- Tier names (Universe to Meteor) carry the theme on the sponsor pages.
-
-The earlier cosmic-microwave-background texture and microwave jokes were tried and rejected on 2026-10-08.
+- **Hero background:** Webb's Carina Nebula ("Cosmic Cliffs"), `static/space/nebula.webp`, natural color, darkened by an overlay where text sits.
+- **Page heads (sponsor pages, 404):** Cassini's Saturn portrait, `static/space/saturn.webp`, screened onto the dark page so its black sky disappears.
+- **Footer wordmark:** the nebula photo clipped inside the letters.
+- Both images are NASA public-domain releases (credit line in the footer). Add further photos the same way; do not add illustrated space art.
+- UI on top of the photos stays flat: red and violet blocks, square corners, hairlines.
 
 ## Rules
 
