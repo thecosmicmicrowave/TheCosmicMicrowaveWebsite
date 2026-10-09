@@ -1,14 +1,15 @@
 {{ define "main" }}
 <section class="section page-head">
   <div class="container">
-    <h1 class="page-head__title">Sponsorship Program</h1>
+    <p class="eyebrow">Sponsorship program <span class="rule"></span> 501(c)(3) &middot; EIN 42-4248249</p>
+    <h1 class="page-head__title">Put your brand <em>in orbit.</em></h1>
     <p class="page-head__lead">
       Support our mission to inspire the next generation of engineers and innovators.
     </p>
     <nav class="tier-jump" aria-label="Jump to sponsorship tier">
-      <a href="#star">Star &mdash; recommended</a>
       <a href="#universe">Universe</a>
       <a href="#galaxy">Galaxy</a>
+      <a href="#star">Star &mdash; most popular</a>
       <a href="#planet">Planet</a>
       <a href="#meteor">Meteor</a>
       <a href="#in-kind">In-kind &amp; mentorship</a>
@@ -17,105 +18,115 @@
   </div>
 </section>
 
-<section class="section section--alt">
-  <div class="container why-panel">
-    <h2 class="section-title">Why sponsor us</h2>
-    <p>
-      We are a 501(c)(3) nonprofit (EIN 42-4248249), and all sponsorships are tax-deductible.
-      Monetary support is our preferred method &mdash; it goes directly toward the goals below,
-      and every sponsor gets brand visibility at local, state, and world-level competitions.
-    </p>
-    <p>
-      By sponsoring our team, you are directly investing in the next generation of engineers.
-      We charge zero membership fees so that any motivated student can join, regardless of
-      family income &mdash; that means we rely on sponsors like you to cover robot parts, event
-      travel, tools, and registration fees.
-    </p>
-    <p>
-      To proceed with any level of support, email
-      <a href="mailto:thecosmicmicrowave35817@gmail.com">thecosmicmicrowave35817@gmail.com</a>
-      for details.
-    </p>
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">01 &mdash; Why sponsor us <span class="rule"></span></p>
+    <div class="about-grid">
+      <h2 class="section-title">Zero membership fees. That is where you come in.</h2>
+      <div class="why-panel">
+        <p>
+          We are a 501(c)(3) nonprofit (EIN 42-4248249), and all sponsorships are tax-deductible.
+          Monetary support is our preferred method &mdash; it goes directly toward the goals below,
+          and every sponsor gets brand visibility at local, state, and world-level competitions.
+        </p>
+        <p>
+          By sponsoring our team, you are directly investing in the next generation of engineers.
+          We charge zero membership fees so that any motivated student can join, regardless of
+          family income &mdash; that means we rely on sponsors like you to cover robot parts, event
+          travel, tools, and registration fees.
+        </p>
+        <p>
+          To proceed with any level of support, email
+          <a href="mailto:thecosmicmicrowave35817@gmail.com">thecosmicmicrowave35817@gmail.com</a>
+          for details.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="section" id="tiers">
   <div class="container">
-    <h2 class="section-title">Financial Support Levels</h2>
+    <p class="eyebrow">02 &mdash; Financial support levels <span class="rule"></span> 05 tiers</p>
+    <h2 class="section-title">Pick your magnitude</h2>
 
-    <div class="card tier-spotlight" id="star">
-      <span class="tier-spotlight__badge">Most popular</span>
-      <div class="tier-spotlight__head">
-        <span class="tier-spotlight__name">Star Tier</span>
-        <span class="tier-spotlight__range">$500 &ndash; $999</span>
+    <div class="tiers">
+      <div class="tier" id="universe">
+        <div>
+          <span class="tier__name">Universe</span>
+          <span class="tier__range mono">$2,500+</span>
+        </div>
+        <ul class="tier__benefits">
+          <li>Largest logo on robot, shirts, banners &amp; presentations</li>
+          <li>Dedicated social spotlight</li>
+          <li>Engineering-portfolio recognition</li>
+          <li>Exclusive robot demo invite</li>
+          <li>Website highlight</li>
+          <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
+        </ul>
+        <a href="/?interest=Universe+Tier+sponsorship#contact" class="btn btn--primary">Become a Universe sponsor</a>
       </div>
-      <p class="tier-spotlight__tagline">&ldquo;A bright contribution to our journey.&rdquo;</p>
-      <ul class="tier-spotlight__benefits">
-        <li>{{ partial "icon.html" (dict "name" "cpu" "size" 20) }}<span>Medium logo on the robot and shirts</span></li>
-        <li>{{ partial "icon.html" (dict "name" "globe" "size" 20) }}<span>Listed on the website</span></li>
-        <li>{{ partial "icon.html" (dict "name" "star" "size" 20) }}<span>Social media thank-you</span></li>
-        <li>{{ partial "icon.html" (dict "name" "mail" "size" 20) }}<span>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</span></li>
-      </ul>
-      <a href="/?interest=Star+Tier+sponsorship#contact" class="btn btn--primary">
-        {{ partial "icon.html" (dict "name" "send" "class" "icon-sm" "size" 18) }}
-        Become a Star sponsor
-      </a>
-    </div>
 
-    <div class="rows">
-      <div class="tier-row tier-row--lg" id="universe">
-        {{ partial "icon.html" (dict "name" "rocket" "class" "icon-lg" "size" 32) }}
-        <div class="tier-row__body">
-          <div class="tier-row__head">
-            <span class="tier-row__name">Universe Tier</span>
-            <span class="tier-row__range">$2,500+</span>
-          </div>
-          <span class="tier-row__tagline">Largest logo on robot, shirts, banners &amp; presentations; dedicated social spotlight; engineering-portfolio recognition; exclusive robot demo invite; newsletter; website highlight.</span>
+      <div class="tier" id="galaxy">
+        <div>
+          <span class="tier__name">Galaxy</span>
+          <span class="tier__range mono">$1,000 &ndash; $2,499</span>
         </div>
-        <a href="/?interest=Universe+Tier+sponsorship#contact" class="btn btn--primary">
-          {{ partial "icon.html" (dict "name" "rocket" "class" "icon-sm" "size" 18) }}
-          Become a Universe sponsor
-        </a>
+        <ul class="tier__benefits">
+          <li>Large logo on robot, shirts, banners &amp; presentations</li>
+          <li>Dedicated social spotlight</li>
+          <li>Robot demo invite</li>
+          <li>Website highlight</li>
+          <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
+        </ul>
+        <a href="/?interest=Galaxy+Tier+sponsorship#contact" class="btn btn--primary">Become a Galaxy sponsor</a>
       </div>
-      <div class="tier-row tier-row--lg" id="galaxy">
-        {{ partial "icon.html" (dict "name" "orbit" "class" "icon-lg" "size" 32) }}
-        <div class="tier-row__body">
-          <div class="tier-row__head">
-            <span class="tier-row__name">Galaxy Tier</span>
-            <span class="tier-row__range">$1,000 &ndash; $2,499</span>
-          </div>
-          <span class="tier-row__tagline">Large logo on robot, shirts, banners &amp; presentations; dedicated social spotlight; robot demo invite; newsletter; website highlight.</span>
+
+      <div class="tier tier--featured" id="star">
+        <div>
+          <span class="tier__flag mono">Most popular</span>
+          <span class="tier__name">Star</span>
+          <span class="tier__range mono">$500 &ndash; $999</span>
         </div>
-        <a href="/?interest=Galaxy+Tier+sponsorship#contact" class="btn btn--primary">
-          {{ partial "icon.html" (dict "name" "orbit" "class" "icon-sm" "size" 18) }}
-          Become a Galaxy sponsor
-        </a>
+        <ul class="tier__benefits">
+          <li>Medium logo on the robot and shirts</li>
+          <li>Listed on the website</li>
+          <li>Social media thank-you</li>
+          <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
+        </ul>
+        <a href="/?interest=Star+Tier+sponsorship#contact" class="btn btn--primary">Become a Star sponsor</a>
       </div>
-      <div class="tier-row" id="planet">
-        {{ partial "icon.html" (dict "name" "planet" "size" 22) }}
-        <span class="tier-row__name">Planet Tier</span>
-        <span class="tier-row__range">$250 &ndash; $499</span>
-        <span class="tier-row__tagline">Logo on website and shirts; social media recognition; newsletter.</span>
-        <a href="/?interest=Planet+Tier+sponsorship#contact" class="btn btn--secondary">
-          {{ partial "icon.html" (dict "name" "planet" "class" "icon-sm" "size" 16) }}
-          Become a Planet sponsor
-        </a>
+
+      <div class="tier" id="planet">
+        <div>
+          <span class="tier__name">Planet</span>
+          <span class="tier__range mono">$250 &ndash; $499</span>
+        </div>
+        <ul class="tier__benefits">
+          <li>Logo on website and shirts</li>
+          <li>Social media recognition</li>
+          <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
+        </ul>
+        <a href="/?interest=Planet+Tier+sponsorship#contact" class="btn btn--secondary">Become a Planet sponsor</a>
       </div>
-      <div class="tier-row" id="meteor">
-        {{ partial "icon.html" (dict "name" "comet" "size" 22) }}
-        <span class="tier-row__name">Meteor Tier</span>
-        <span class="tier-row__range">$100 &ndash; $249</span>
-        <span class="tier-row__tagline">Logo on website; newsletter.</span>
-        <a href="/?interest=Meteor+Tier+sponsorship#contact" class="btn btn--secondary">
-          {{ partial "icon.html" (dict "name" "comet" "class" "icon-sm" "size" 16) }}
-          Become a Meteor sponsor
-        </a>
+
+      <div class="tier" id="meteor">
+        <div>
+          <span class="tier__name">Meteor</span>
+          <span class="tier__range mono">$100 &ndash; $249</span>
+        </div>
+        <ul class="tier__benefits">
+          <li>Logo on website</li>
+          <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
+        </ul>
+        <a href="/?interest=Meteor+Tier+sponsorship#contact" class="btn btn--secondary">Become a Meteor sponsor</a>
       </div>
     </div>
 
     <div class="sponsor-packet">
       <div class="sponsor-packet__intro">
-        <h2 class="section-title">Sponsorship Packet</h2>
+        <p class="eyebrow">03 &mdash; Sponsorship packet <span class="rule"></span> PDF</p>
+        <h2 class="section-title">The full packet</h2>
         <p class="section-subtitle">Review the complete sponsorship packet for our mission, season goals, tier benefits, and ways to support the team.</p>
         <a class="btn btn--secondary" href="/sponsor-packet.pdf" target="_blank" rel="noopener noreferrer">
           Open packet in a new tab
@@ -132,25 +143,22 @@
   </div>
 </section>
 
-<section class="section section--alt" id="in-kind">
+<section class="section" id="in-kind">
   <div class="container">
-    <h2 class="section-title">In-Kind Support &amp; Mentorship</h2>
-    <p class="section-subtitle">Beyond funding, two other ways to power the team &mdash; perks scale to the value of what's given.</p>
+    <p class="eyebrow">04 &mdash; In-kind support &amp; mentorship <span class="rule"></span></p>
+    <h2 class="section-title">Beyond funding</h2>
+    <p class="section-subtitle">Two other ways to power the team &mdash; perks scale to the value of what's given.</p>
     <div class="rows">
       <div class="inkind-row">
-        {{ partial "icon.html" (dict "name" "wrench" "size" 28) }}
         <div>
-          <h3>In-Kind Support</h3>
-          <p class="subtitle">Equipment &amp; materials</p>
+          <h3>In-kind support</h3>
           <p class="desc">CNC routers, 3D printers, laser cutters, filament, raw materials, tools, and other parts &mdash; these power our builds and free up funds for critical expenses.</p>
           <a href="/?interest=In-Kind+support#contact" class="btn btn--secondary">Offer in-kind support</a>
         </div>
       </div>
       <div class="inkind-row">
-        {{ partial "icon.html" (dict "name" "hammer" "size" 28) }}
         <div>
           <h3>Mentorship</h3>
-          <p class="subtitle">Expertise &amp; guidance</p>
           <p class="desc">Real-world engineering practices, project management, and leadership development &mdash; professionals who help us bridge our robotics journey and industry application.</p>
           <a href="/?interest=Mentorship#contact" class="btn btn--secondary">Offer mentorship</a>
         </div>
@@ -160,27 +168,18 @@
 </section>
 
 <section class="section" id="sponsors">
-  <div class="container donate-alt">
-    <h2 class="section-title">See the organizations behind us</h2>
-    <p class="section-subtitle">Every sponsor makes our season possible. Meet the businesses and organizations powering the team.</p>
-    <div class="donate-alt__actions">
-      <a class="btn btn--primary" href="/sponsors/">
-        {{ partial "icon.html" (dict "name" "star" "class" "icon-sm" "size" 18) }}
-        See our sponsors
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container donate-alt">
-    <h2 class="section-title">Prefer a straightforward donation?</h2>
-    <p class="section-subtitle">No tier, no benefits list &mdash; just support the team directly.</p>
-    <div class="donate-alt__actions">
-      <a class="btn btn--secondary" href="/donate/">
-        {{ partial "icon.html" (dict "name" "heart" "class" "icon-sm" "size" 18) }}
-        Donate (PayPal or Give Lively)
-      </a>
+  <div class="container">
+    <div class="closing">
+      <div>
+        <h2>See who is behind us</h2>
+        <p>Meet the businesses and organizations powering the team.</p>
+        <a class="btn btn--primary" href="/sponsors/">See our sponsors</a>
+      </div>
+      <div>
+        <h2>Prefer a straightforward donation?</h2>
+        <p>No tier, no benefits list &mdash; just support the team directly.</p>
+        <a class="btn btn--secondary" href="/donate/">Donate (PayPal or Give Lively)</a>
+      </div>
     </div>
   </div>
 </section>

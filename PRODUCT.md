@@ -36,9 +36,9 @@ Contact form submits to Formspree (`https://formspree.io/f/xzdnbjjr`). Donations
 ## Brand Commitments
 
 - Team name: "The Cosmic Microwave," FTC 35817. Motto: `"Cogitare est coquere" — To think is to cook.` (Latin pun on the team name.)
-- Colors are fixed and must not be changed: `--bg-primary #0a0a14`, `--bg-secondary #111128`, `--bg-card rgba(20,20,50,0.7)`, `--text-primary #f0f0ff`, `--text-secondary #b8b8e0`, `--accent-1 #7b4cff`, `--accent-2 #ff3b30`, `--accent-3 #ff6b6b`, `--accent-deep #b30000`. Dark mode only.
-- Fonts fixed: Orbitron for display use, Inter for everything else — but per user feedback (2026-08-26), current usage of both reads as generic/AI-template ("slop"): Orbitron is overused as a heavy-handed sci-fi cue on every heading/stat/tier-name instead of a rare accent, and gradient-clip-text (`background-clip: text` purple→red) is repeated on nearly every section title. Keep the two fonts and the palette; the redesign should reduce Orbitron's footprint and the gradient-text pattern's repetition, and replace generic rounded-pill-button/blurred-glass-card chrome with something more specific to the team, without abandoning the cosmic-dark identity.
-- No emoji anywhere in rendered output — use the existing inline SVG icon sprite instead. This is a violated-but-established rule (`layouts/sponsor/single.html` currently has 19 emoji instances that need removing).
+- Visual direction reset 2026-10-08 at the user's request (old violet + red, pill/glass look read as generic and AI-made). References: seattlesolvers.com and theseusrobotics.org. Current system is documented in `DESIGN.md`: near-black background, warm off-white text, one red accent (`#ff3b30`), square corners, hairline rules, mono labels. The space theme is carried by the team's own name: a cosmic-microwave-background sky map and microwave-display readouts. Violet is retired.
+- Fonts: Orbitron (weight 500, uppercase, headlines and readouts only), Inter (body), JetBrains Mono (labels, buttons, metadata).
+- No emoji anywhere in rendered output.
 - Logo assets (`/logo_circle_nobg.png`, `/logo_badge_nobg.png`, `/favicon-96x96.png`) are fixed and must not be modified.
 
 ## Evidence on Hand
@@ -56,7 +56,7 @@ Contact form submits to Formspree (`https://formspree.io/f/xzdnbjjr`). Donations
 1. Sponsor/donor conversion is the primary success metric; visual and content decisions on the sponsor and donate pages take priority over decoration.
 2. The competitive-veteran-under-a-rookie-number story is the team's real differentiator and should stay visible, not buried under generic team-site boilerplate.
 3. One token system, one shared header/footer/script — no page should carry its own duplicated stylesheet going forward.
-4. Cosmic-dark identity stays; execution should read as authored for this specific team, not as a generic dark-mode SaaS/startup template.
+4. Dark space identity stays; execution should read as authored for this specific team, not as a generic dark-mode SaaS/startup template.
 5. Never ship placeholder content (fake contact info, dead links, lorem-ipsum-equivalent copy) to production.
 
 ## Accessibility & Inclusion
