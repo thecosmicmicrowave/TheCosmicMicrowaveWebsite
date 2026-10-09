@@ -7,7 +7,7 @@ Reset 2026-10-08. Replaces the earlier violet + red "Night-Shift Galley" system,
 Real space photography, not drawn shapes. Flat drawn stars, orbits and planets were tried and rejected on 2026-10-08, as was a procedural microwave-background texture.
 
 - **Hero background:** Webb's Carina Nebula ("Cosmic Cliffs"), `static/space/nebula.webp`, color-graded to violet shadows and red highlights (team colors), darkened by an overlay where text sits.
-- **Sponsor tiers:** each tier on `/sponsors/` opens with a banner photo of the thing it is named after, set in `data/tiers.yaml` (Hubble deep field, Whirlpool Galaxy slowly turning, the Sun, Saturn, a Perseid meteor). Banner height and title size step down from Universe to Meteor. Thumbnails of the same photos sit on the tier rows of `/sponsor/`.
+- **Sponsor tiers:** each tier on `/sponsors/` opens with a banner photo of the thing it is named after, set in `data/tiers.yaml` (Hubble deep field, Whirlpool Galaxy slowly turning, the Sun, Saturn, a Perseid meteor). Banner height and title size step down from Universe to Meteor. The same photos sit behind each tier panel on `/sponsor/` ("Pick your magnitude"). Size steps between tiers are gentle: lower tiers must not look shrunken (Planet and Meteor banners were enlarged on 2026-10-08 after feedback).
 - **Page heads (sponsor pages, 404):** Cassini's Saturn portrait, `static/space/saturn.webp`, screened onto the dark page so its black sky disappears.
 - **Footer wordmark:** the nebula photo clipped inside the letters.
 - Both images are NASA public-domain releases (credit line in the footer). Add further photos the same way; do not add illustrated space art.
@@ -42,7 +42,7 @@ Defined at the top of `assets/css/main.css`: colors, 4/8px spacing scale (`--spa
 - **Log** (`.log`): numbered hairline rows.
 - **Crew** (`.crew`): numbered rows from `data/crew.yaml`; each is a `<details>` that opens a file with focus, experience, school, and an optional `bio` and `photo`. One open at a time.
 - **Sponsor wall** (`.sponsor-tier`, `.sponsor-card`): one section per tier. Eyebrow shows the tier name and the real size of that object (galaxy: 100,000 light-years). Card columns grow as tiers shrink (2, 3, 4, 5, 6).
-- **Tier table** (`.tiers`, `.tier`): name and price, benefit list, CTA. Star stays flagged "Most popular" in a red-bordered row; that is a deliberate pricing nudge.
+- **Tier panels** (`.tiers`, `.tier`): one photo-backed panel per tier with name and price, benefit list, CTA. Star stays flagged "Most popular" with a red border, red name and the only red button; that is a deliberate pricing nudge.
 - **Forms**: underline-only fields, mono labels.
 
 ## Open slots

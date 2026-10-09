@@ -675,31 +675,58 @@ button { font: inherit; cursor: pointer; }
 .why-panel p { color: var(--ink-2); font-size: var(--text-lg); margin-bottom: var(--space-4); max-width: 62ch; }
 .why-panel a { color: var(--red); }
 
-.tiers { border-top: 1px solid var(--line-strong); }
+/* each tier is a panel over the photo of its namesake */
+.tiers { display: grid; gap: var(--space-4); }
 .tier {
+  position: relative;
+  overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) 20rem;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.35fr) 19rem;
   gap: var(--space-6);
-  align-items: start;
-  padding-block: var(--space-6);
-  border-bottom: 1px solid var(--line);
+  align-items: center;
+  min-height: 300px;
+  padding: var(--space-7) var(--space-6);
+  border: 1px solid var(--line);
+  background: #000;
 }
+.tier > :not(.tier__bg) { position: relative; z-index: 1; }
+.tier__bg { position: absolute; max-width: none; z-index: 0; }
+.tier::after { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.72) 48%, rgba(0, 0, 0, 0.3) 100%); }
 .tier .btn { width: 100%; }
-.tier__thumb { width: 72px; height: 72px; object-fit: cover; margin-bottom: var(--space-3); background: #000; }
-.tier--featured .tier__thumb { outline: 2px solid var(--bg); }
-.tier__name { font-family: var(--font-display); font-weight: 500; font-size: var(--text-xl); text-transform: uppercase; }
-.tier__range { display: block; margin-top: var(--space-2); color: var(--red); }
-.tier__scale { display: block; margin-top: var(--space-1); }
-.tier:not(.tier--featured):hover .tier__name { color: var(--violet-ink); }
-.tier__benefits { list-style: none; color: var(--ink-2); }
+.tier .btn--secondary { background: rgba(8, 8, 11, 0.72); }
+.tier__name { display: block; font-family: var(--font-display); font-weight: 500; font-size: clamp(1.75rem, 3vw, 2.4rem); line-height: 1; text-transform: uppercase; }
+.tier__range { display: block; margin-top: var(--space-3); color: var(--red); font-size: var(--text-sm); }
+.tier__benefits { list-style: none; color: rgba(243, 239, 228, 0.86); }
 .tier__benefits li { padding-block: var(--space-1); padding-left: var(--space-5); position: relative; }
 .tier__benefits li::before { content: ''; position: absolute; left: 0; top: 0.95em; width: 10px; height: 1px; background: var(--red); }
-.tier--featured { padding-inline: var(--space-5); margin-top: -1px; border-bottom: none; }
-.tier--featured .tier__range, .tier--featured .tier__benefits { color: var(--bg); }
-.tier--featured .tier__benefits li::before { background: var(--bg); }
-.tier__flag { display: table; margin-bottom: var(--space-3); padding: var(--space-1) var(--space-2); background: var(--bg); color: var(--ink) !important; }
 
-.inkind-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) 20rem; gap: var(--space-6); align-items: start; }
+.tier--universe { min-height: 380px; }
+.tier--universe .tier__bg { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tier--universe .tier__name { font-size: clamp(2rem, 3.7vw, 3rem); }
+.tier--universe .tier__range { color: var(--violet-ink); }
+
+.tier--galaxy { min-height: 340px; }
+.tier--galaxy .tier__bg { top: 50%; right: -4%; width: min(52%, 560px); aspect-ratio: 1; margin-top: calc(min(52%, 560px) / -2); object-fit: cover; -webkit-mask-image: radial-gradient(circle, #000 42%, transparent 70%); mask-image: radial-gradient(circle, #000 42%, transparent 70%); }
+.tier--galaxy .tier__name { font-size: clamp(1.9rem, 3.4vw, 2.7rem); }
+.tier--galaxy .tier__range { color: var(--violet-ink); }
+.tier--galaxy::after, .tier--star::after, .tier--planet::after { background: linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0.25) 100%); }
+@media (prefers-reduced-motion: no-preference) {
+  .tier--galaxy .tier__bg { animation: galaxy-turn 360s linear infinite; }
+}
+
+.tier--star { min-height: 340px; border-color: var(--red); }
+.tier--star .tier__bg { top: -40%; right: -6%; width: min(52%, 560px); aspect-ratio: 1; object-fit: cover; }
+.tier--star .tier__name { color: var(--red); }
+
+.tier--planet { min-height: 300px; }
+.tier--planet .tier__bg { top: 50%; right: -6%; width: min(64%, 720px); height: auto; transform: translateY(-50%); }
+
+.tier--meteor { min-height: 280px; }
+.tier--meteor .tier__bg { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+
+.tier__flag { display: table; margin-bottom: var(--space-3); padding: var(--space-1) var(--space-2); background: var(--red); color: var(--bg) !important; }
+
+.inkind-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) 19rem; gap: var(--space-6); align-items: start; }
 .inkind-row > .icon { display: none; }
 .inkind-row > div { display: contents; }
 .inkind-row h3 { font-family: var(--font-display); font-weight: 500; font-size: var(--text-xl); text-transform: uppercase; grid-column: 1; }
@@ -755,30 +782,29 @@ button { font: inherit; cursor: pointer; }
 @keyframes galaxy-turn { to { transform: rotate(-360deg); } }
 
 /* Star: the Sun rising out of the corner, red accents */
-.sponsor-tier--star .tier-banner { min-height: 320px; }
-.sponsor-tier--star .tier-banner__img { top: -55%; right: -8%; width: min(58%, 560px); aspect-ratio: 1; object-fit: cover; }
+.sponsor-tier--star .tier-banner { min-height: 360px; }
+.sponsor-tier--star .tier-banner__img { top: -42%; right: -8%; width: min(58%, 560px); aspect-ratio: 1; object-fit: cover; }
 .sponsor-tier--star .tier-banner .mono, .sponsor-tier--star .tier-banner__title { color: var(--red); }
 .sponsor-tier--star .tier-banner__credit { color: rgba(243, 239, 228, 0.6) !important; }
 .sponsor-tier--star .tier-banner::after { background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, transparent 55%); }
 .sponsor-tier--star .sponsor-card { border-color: rgba(255, 59, 48, 0.35); }
 
 /* Planet: Saturn, level and calm */
-.sponsor-tier--planet .tier-banner { min-height: 260px; }
+.sponsor-tier--planet .tier-banner { min-height: 340px; }
 .sponsor-tier--planet .tier-banner__img { top: 50%; right: -4%; width: min(70%, 720px); height: auto; transform: translateY(-50%); }
-.sponsor-tier--planet .tier-banner__title { font-size: clamp(2.25rem, 5vw, 3.75rem); }
+.sponsor-tier--planet .tier-banner__title { font-size: clamp(2.5rem, 6vw, 4.5rem); }
 .sponsor-tier--planet .tier-banner::after { background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, transparent 50%); }
 
 /* Meteor: a thin strip of night sky with one streak */
-.sponsor-tier--meteor .tier-banner { min-height: 170px; }
+.sponsor-tier--meteor .tier-banner { min-height: 320px; }
 .sponsor-tier--meteor .tier-banner__img { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
-.sponsor-tier--meteor .tier-banner__title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
-.sponsor-tier--meteor .tier-banner__text { padding: var(--space-5); }
-.sponsor-tier--meteor .tier-banner__line { display: none; }
-.sponsor-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.sponsor-tier--meteor .tier-banner__title { font-size: clamp(2.25rem, 5.5vw, 4rem); }
+.sponsor-tier--meteor .tier-banner .mono { color: var(--violet-ink); }
+.sponsor-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .sponsor-tier--universe .sponsor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .sponsor-tier--galaxy .sponsor-grid   { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.sponsor-tier--star .sponsor-grid     { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.sponsor-tier--planet .sponsor-grid   { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.sponsor-tier--star .sponsor-grid     { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sponsor-tier--planet .sponsor-grid   { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
 .sponsor-card {
   display: flex;
@@ -794,10 +820,8 @@ a.sponsor-card:hover { border-color: var(--violet-ink); color: var(--ink); }
 .sponsor-card__name { font-weight: 500; line-height: 1.3; }
 .sponsor-tier--universe .sponsor-card__name,
 .sponsor-tier--galaxy .sponsor-card__name { font-size: var(--text-lg); }
-.sponsor-tier--meteor .sponsor-card__name { font-size: var(--text-sm); }
-.sponsor-tier--star .sponsor-card__meta,
 .sponsor-tier--planet .sponsor-card__meta,
-.sponsor-tier--meteor .sponsor-card__meta { flex-direction: column; justify-content: flex-start; gap: var(--space-2); padding: var(--space-3); }
+.sponsor-tier--meteor .sponsor-card__meta { flex-direction: column; justify-content: flex-start; gap: var(--space-2); }
 .sponsor-card__visit { flex: none; }
 a.sponsor-card:hover .sponsor-card__visit { color: var(--red); }
 
@@ -874,6 +898,8 @@ a.sponsor-card:hover .sponsor-card__visit { color: var(--red); }
   .crew__file { margin-left: 0; }
   .news-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
   .tier, .inkind-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
+  .tier { padding: var(--space-6) var(--space-5); }
+  .tier::after { background: rgba(0, 0, 0, 0.74); }
   .tier .btn { width: auto; justify-self: start; }
   .inkind-row h3, .inkind-row .desc, .inkind-row .btn { grid-column: 1; justify-self: start; }
   .closing, .split { grid-template-columns: minmax(0, 1fr); }
