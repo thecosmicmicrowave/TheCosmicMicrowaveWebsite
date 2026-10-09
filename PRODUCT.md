@@ -20,7 +20,7 @@ Public marketing and credibility site for FTC (FIRST Tech Challenge) robotics te
 
 ## Positioning
 
-The team competed previously as FTC 27393 "The FBI – FIRST Bot Inventors" at North Tapps Middle School with a real competitive record (Finalist Alliance Captain, Control 2 at Cowtown, 4th at WA State Championship, Think 2 at Asimov, Control 1 at Wu League, Inspire 2 at Wu Interleague) before rebranding as 35817. The claim a template team site can't make: veteran competitive results under a technically "rookie" team number, worn without spin.
+The team competed previously as FTC 27393 "The FBI – FIRST Bot Inventors" at North Tapps Middle School with a real competitive record (Finalist Alliance Captain, Control 2 at Cowtown, at WA State Championship ranked 3rd after qualification matches and 10th overall by ranking points (corrected by the team 2026-10-08; the old site's "4th" was wrong), Think 2 at Asimov, Control 1 at Wu League, Inspire 2 at Wu Interleague) before rebranding as 35817. The claim a template team site can't make: veteran competitive results under a technically "rookie" team number, worn without spin.
 
 ## Operating Context
 
