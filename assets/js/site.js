@@ -177,8 +177,13 @@
 
     function showKind() {
       var sponsorship = currentKind() === 'sponsorship';
-      sponsorForm.querySelector('[data-kind-panel="sponsorship"]').hidden = !sponsorship;
-      sponsorForm.querySelector('[data-kind-panel="other"]').hidden = sponsorship;
+      var panels = { sponsorship: sponsorship, other: !sponsorship };
+      Object.keys(panels).forEach(function (name) {
+        var panel = sponsorForm.querySelector('[data-kind-panel="' + name + '"]');
+        panel.hidden = !panels[name];
+        // A hidden panel must not post its fields (amount/pay vs description).
+        panel.querySelectorAll('input, textarea').forEach(function (field) { field.disabled = !panels[name]; });
+      });
       sfSubmit.textContent = sponsorship ? 'Send application' : 'Send offer';
     }
 
@@ -255,6 +260,15 @@
     sfAmount.addEventListener('input', showTier);
     showKind();
     showTier();
+
+    // Coming back from PayPal with the browser's back button restores this page
+    // from the bfcache with the submit button still disabled and the old token.
+    window.addEventListener('pageshow', function (event) {
+      if (!event.persisted) return;
+      sfSubmit.disabled = false;
+      setStatus('', '');
+      resetChallenge();
+    });
 
     sponsorForm.addEventListener('submit', function (e) {
       e.preventDefault();
