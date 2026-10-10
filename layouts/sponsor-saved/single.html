@@ -1,0 +1,30 @@
+{{ define "title" }}Application Saved | FTC 35817{{ end }}
+{{ define "main" }}
+<section class="section page-head page-head--space">
+  <img class="page-head__planet" src="/space/saturn.webp" alt="" width="1600" height="818" aria-hidden="true">
+  <div class="container" data-variants data-param="reason" data-default="cancelled">
+    <p class="eyebrow">Sponsorship <span class="rule"></span> Application saved</p>
+    <h1 class="page-head__title">Your application <em>is saved.</em></h1>
+    <p class="page-head__lead" data-variant="cancelled">
+      You left PayPal before paying, and that is fine. Nothing was charged. The
+      team has your application and will email you about paying by check or
+      with a fresh payment link.
+    </p>
+    <p class="page-head__lead" data-variant="paypal" hidden>
+      We could not reach PayPal just now. Nothing was charged. The team has
+      your application and will email you a payment link, or you can pay by
+      check.
+    </p>
+    <p class="page-head__lead" data-variant="payment" hidden>
+      We could not confirm your payment yet. If PayPal shows it as completed,
+      you are all set and a receipt will follow. Otherwise nothing was charged,
+      and the team will email you about next steps.
+    </p>
+    <p class="page-head__lead">
+      Questions? Write to
+      <a href="mailto:thecosmicmicrowave35817@gmail.com">thecosmicmicrowave35817@gmail.com</a>.
+    </p>
+    <a class="btn btn--secondary" href="/sponsor/">Back to sponsorship</a>
+  </div>
+</section>
+{{ end }}

@@ -14,6 +14,7 @@
       <a href="#planet">Planet</a>
       <a href="#meteor">Meteor</a>
       <a href="#in-kind">In-kind &amp; mentorship</a>
+      <a href="#apply">Apply</a>
       <a href="/sponsors/">Our sponsors</a>
     </nav>
   </div>
@@ -37,9 +38,8 @@
           travel, tools, and registration fees.
         </p>
         <p>
-          To proceed with any level of support, email
-          <a href="mailto:thecosmicmicrowave35817@gmail.com">thecosmicmicrowave35817@gmail.com</a>
-          for details.
+          To proceed with any level of support, <a href="#apply">apply below</a>.
+          It takes about two minutes.
         </p>
       </div>
     </div>
@@ -66,7 +66,7 @@
           <li>Website highlight</li>
           <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
         </ul>
-        <a href="/?interest=Universe+Tier+sponsorship#contact" class="btn btn--secondary">Become a Universe sponsor</a>
+        <a href="#apply" data-apply-kind="sponsorship" data-apply-amount="2500" class="btn btn--secondary">Become a Universe sponsor</a>
       </div>
 
       <div class="tier tier--galaxy" id="galaxy">
@@ -82,7 +82,7 @@
           <li>Website highlight</li>
           <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
         </ul>
-        <a href="/?interest=Galaxy+Tier+sponsorship#contact" class="btn btn--secondary">Become a Galaxy sponsor</a>
+        <a href="#apply" data-apply-kind="sponsorship" data-apply-amount="1000" class="btn btn--secondary">Become a Galaxy sponsor</a>
       </div>
 
       <div class="tier tier--star tier--featured" id="star">
@@ -98,7 +98,7 @@
           <li>Social media thank-you</li>
           <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
         </ul>
-        <a href="/?interest=Star+Tier+sponsorship#contact" class="btn btn--primary">Become a Star sponsor</a>
+        <a href="#apply" data-apply-kind="sponsorship" data-apply-amount="500" class="btn btn--primary">Become a Star sponsor</a>
       </div>
 
       <div class="tier tier--planet" id="planet">
@@ -112,7 +112,7 @@
           <li>Social media recognition</li>
           <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
         </ul>
-        <a href="/?interest=Planet+Tier+sponsorship#contact" class="btn btn--secondary">Become a Planet sponsor</a>
+        <a href="#apply" data-apply-kind="sponsorship" data-apply-amount="250" class="btn btn--secondary">Become a Planet sponsor</a>
       </div>
 
       <div class="tier tier--meteor" id="meteor">
@@ -125,7 +125,7 @@
           <li>Logo on website</li>
           <li>Monthly &ldquo;Cosmic Dispatch&rdquo; team newsletter</li>
         </ul>
-        <a href="/?interest=Meteor+Tier+sponsorship#contact" class="btn btn--secondary">Become a Meteor sponsor</a>
+        <a href="#apply" data-apply-kind="sponsorship" data-apply-amount="100" class="btn btn--secondary">Become a Meteor sponsor</a>
       </div>
     </div>
 
@@ -159,19 +159,112 @@
         <div>
           <h3>In-kind support</h3>
           <p class="desc">CNC routers, 3D printers, laser cutters, filament, raw materials, tools, and other parts &mdash; these power our builds and free up funds for critical expenses.</p>
-          <a href="/?interest=In-Kind+support#contact" class="btn btn--secondary">Offer in-kind support</a>
+          <a href="#apply" data-apply-kind="in_kind" class="btn btn--secondary">Offer in-kind support</a>
         </div>
       </div>
       <div class="inkind-row">
         <div>
           <h3>Mentorship</h3>
           <p class="desc">Real-world engineering practices, project management, and leadership development &mdash; professionals who help us bridge our robotics journey and industry application.</p>
-          <a href="/?interest=Mentorship#contact" class="btn btn--secondary">Offer mentorship</a>
+          <a href="#apply" data-apply-kind="mentorship" class="btn btn--secondary">Offer mentorship</a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<section class="section" id="apply">
+  <div class="container">
+    <p class="eyebrow">05 &mdash; Apply <span class="rule"></span> About two minutes</p>
+    <h2 class="section-title">Become a sponsor</h2>
+    <p class="section-subtitle">Tell us who you are and how you would like to help. Pay online now, or send the form and settle up by check.</p>
+
+    <form class="sponsor-form" id="sponsor-form" method="POST" enctype="multipart/form-data" novalidate
+          action="{{ site.Params.sponsorApiBase }}/api/public/sponsor/apply">
+
+      <fieldset class="choice-set">
+        <legend>How would you like to support the team?</legend>
+        <label class="choice"><input type="radio" name="kind" value="sponsorship" checked> <span>Sponsorship</span></label>
+        <label class="choice"><input type="radio" name="kind" value="in_kind"> <span>In-kind support</span></label>
+        <label class="choice"><input type="radio" name="kind" value="mentorship"> <span>Mentorship</span></label>
+        <p class="field-error" data-error-for="kind" role="alert"></p>
+      </fieldset>
+
+      <div data-kind-panel="sponsorship">
+        <div class="field">
+          <label for="sf-amount">Amount (USD)</label>
+          <input type="text" id="sf-amount" name="amount" inputmode="decimal" autocomplete="off" placeholder="500" aria-describedby="sf-tier sf-amount-error">
+          <p class="field-hint mono" id="sf-tier" aria-live="polite">Enter $100 or more to see your tier.</p>
+          <p class="field-error" id="sf-amount-error" data-error-for="amount" role="alert"></p>
+        </div>
+        <fieldset class="choice-set">
+          <legend>Payment</legend>
+          <label class="choice"><input type="radio" name="pay" value="paypal" checked> <span>Pay now with PayPal or card</span></label>
+          <label class="choice"><input type="radio" name="pay" value="later"> <span>Pay by check, or contact me first</span></label>
+          <p class="field-error" data-error-for="pay" role="alert"></p>
+        </fieldset>
+      </div>
+
+      <div data-kind-panel="other" hidden>
+        <div class="field">
+          <label for="sf-description">What would you like to offer?</label>
+          <textarea id="sf-description" name="description" maxlength="2000" placeholder="Equipment, materials, or the expertise you can share&hellip;" aria-describedby="sf-description-error"></textarea>
+          <p class="field-error" id="sf-description-error" data-error-for="description" role="alert"></p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="sf-company">Company or organization</label>
+          <input type="text" id="sf-company" name="company" maxlength="120" autocomplete="organization" required aria-describedby="sf-company-error">
+          <p class="field-error" id="sf-company-error" data-error-for="company" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="sf-email">Email</label>
+          <input type="email" id="sf-email" name="email" maxlength="200" autocomplete="email" required aria-describedby="sf-email-error">
+          <p class="field-error" id="sf-email-error" data-error-for="email" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="sf-contact">Contact person <span class="optional">optional</span></label>
+          <input type="text" id="sf-contact" name="contact_person" maxlength="120" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="sf-phone">Phone <span class="optional">optional</span></label>
+          <input type="tel" id="sf-phone" name="phone" maxlength="40" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="sf-website">Website <span class="optional">optional</span></label>
+          <input type="text" id="sf-website" name="website" maxlength="200" inputmode="url" autocomplete="url" placeholder="yourcompany.com" aria-describedby="sf-website-error">
+          <p class="field-error" id="sf-website-error" data-error-for="website" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="sf-logo">Logo <span class="optional">optional</span></label>
+          <input type="file" id="sf-logo" name="logo" accept="image/png,image/jpeg,image/webp,image/svg+xml" aria-describedby="sf-logo-hint sf-logo-error">
+          <p class="field-hint" id="sf-logo-hint">PNG, JPG, WebP, or SVG, up to 4 MB. Used for the website, shirts, and robot.</p>
+          <p class="field-error" id="sf-logo-error" data-error-for="logo" role="alert"></p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="sf-message">Anything else? <span class="optional">optional</span></label>
+        <textarea id="sf-message" name="message" maxlength="2000"></textarea>
+      </div>
+
+      <div class="hp-field" aria-hidden="true">
+        <label for="sf-fax">Fax</label>
+        <input type="text" id="sf-fax" name="company_fax" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="cf-turnstile" data-sitekey="{{ site.Params.turnstileSiteKey }}" data-theme="dark"></div>
+
+      <button type="submit" class="btn btn--primary">Send application</button>
+      <p class="form-status" id="sponsor-form-status" role="status"></p>
+      <noscript><p class="form-status is-error">This form needs JavaScript. Email us at thecosmicmicrowave35817@gmail.com instead.</p></noscript>
+      <p class="field-hint">Prefer email? Write to <a href="mailto:thecosmicmicrowave35817@gmail.com">thecosmicmicrowave35817@gmail.com</a>.</p>
+    </form>
+  </div>
+</section>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <section class="section" id="sponsors">
   <div class="container">
