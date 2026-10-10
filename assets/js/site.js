@@ -228,6 +228,7 @@
     // Only ever navigate to a real web address. Anything else (javascript:,
     // data:, a malformed value) is treated as a failed submission.
     function safeRedirect(value) {
+      if (typeof value !== 'string' || !value) return null;
       try {
         var url = new URL(value, window.location.href);
         var local = url.hostname === 'localhost' || url.hostname === '127.0.0.1';
