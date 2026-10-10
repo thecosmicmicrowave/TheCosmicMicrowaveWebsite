@@ -225,6 +225,17 @@
       if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
     }
 
+    // Only ever navigate to a real web address. Anything else (javascript:,
+    // data:, a malformed value) is treated as a failed submission.
+    function safeRedirect(value) {
+      try {
+        var url = new URL(value, window.location.href);
+        var local = url.hostname === 'localhost' || url.hostname === '127.0.0.1';
+        if (url.protocol === 'https:' || (url.protocol === 'http:' && local)) return url.href;
+      } catch (e) {}
+      return null;
+    }
+
     document.querySelectorAll('[data-apply-kind]').forEach(function (link) {
       link.addEventListener('click', function () {
         var kind = link.getAttribute('data-apply-kind');
@@ -262,9 +273,10 @@
           return res.json().catch(function () { return {}; }).then(function (body) { return { status: res.status, body: body }; });
         })
         .then(function (result) {
-          if (result.status === 200 && result.body.redirect) {
+          var target = result.status === 200 ? safeRedirect(result.body.redirect) : null;
+          if (target !== null) {
             setStatus('Sent. One moment…', 'success');
-            window.location.assign(result.body.redirect);
+            window.location.assign(target);
             return;
           }
           resetChallenge();
