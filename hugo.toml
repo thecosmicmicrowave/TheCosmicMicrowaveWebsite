@@ -5,9 +5,12 @@ locale = "en-us"                       # replaces languageCode
 [params]
   tagline = "Cogitare est coquere — To think is to cook."
   sponsorApiBase = "https://ftc-35817-team-app.vercel.app"
-  # Cloudflare's always-pass test key. Replace with the real site key at
-  # launch (team app repo: docs/sponsor-intake.md).
-  turnstileSiteKey = "1x00000000000000000000AA"
+  # Cloudflare Turnstile site key (public). Its secret half lives in the team
+  # app's Vercel settings as TURNSTILE_SECRET_KEY. For local testing against
+  # the always-pass test secret, override with
+  # HUGO_PARAMS_TURNSTILESITEKEY=1x00000000000000000000AA (team app repo:
+  # docs/sponsor-intake.md).
+  turnstileSiteKey = "0x4AAAAAAFThu5JWMKZrzfmf"
 
 [markup]
   [markup.goldmark]
