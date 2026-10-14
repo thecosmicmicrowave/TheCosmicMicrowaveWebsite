@@ -63,6 +63,11 @@
   logo: "MachineRepairDesignGalaxy.png"
   url: "https://mrdinc.com"
 
+- name: "Boeing"
+  tier: galaxy
+  logo: "BoeingGalaxy.png"
+  url: "https://www.boeing.com"
+
 - name: "Forthright Insurance Services"
   tier: planet
   logo: "ForthrightPlanet.png"
