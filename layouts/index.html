@@ -130,19 +130,22 @@
     <a class="btn btn--primary" href="/sponsor/">Support us</a>
   </div>
   <div class="split__panel block-violet">
-    <p class="mono">Where it goes</p>
+    <p class="mono">Where it goes &mdash; % of budget</p>
     {{ $budget := slice
       (dict "l" "Robot electronics & supplies" "a" 5000)
       (dict "l" "Travel funds" "a" 4300)
       (dict "l" "Competition registration & 501(c)(3) fees" "a" 1600)
       (dict "l" "Outreach events" "a" 700)
       (dict "l" "Game elements & field setup" "a" 600) }}
+    {{ $total := 0 }}
+    {{ range $budget }}{{ $total = add $total .a }}{{ end }}
     <ul class="bars">
       {{ range $budget }}
       <li>
         <span class="bars__label">{{ .l }}</span>
-        <span class="bars__amount mono">${{ lang.FormatNumber 0 .a }}</span>
-        <span class="bars__track"><span class="bars__fill" style="width: {{ div (mul .a 100) 5000 }}%"></span></span>
+        {{ $pct := math.Round (div (mul .a 100.0) $total) }}
+        <span class="bars__amount mono">${{ lang.FormatNumber 0 .a }} &middot; {{ $pct }}%</span>
+        <span class="bars__track"><span class="bars__fill" style="width: {{ $pct }}%"></span></span>
       </li>
       {{ end }}
     </ul>
