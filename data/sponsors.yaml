@@ -73,8 +73,8 @@
   logo: "StreepyLawUniverse.jpg"
 
 - name: "Barn Analytics"
-  tier: planet
-  logo: "BarnAnalyticsPlanet.svg"
+  tier: star
+  logo: "BarnAnalyticsStar.svg"
 
 - name: "Spine & Pain Institute Los Angeles"
   tier: galaxy
